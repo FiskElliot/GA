@@ -10,5 +10,5 @@ app.listen(3000, () => {console.log("Server running on http://localhost:3000");}
 app.set("view engine", "pug")
 
 app.get("/", (req, res) => {
-    res.send("HOME");
+    res.render("index");
 });
