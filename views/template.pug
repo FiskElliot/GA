@@ -5,7 +5,15 @@ html(lang="en")
         include style.pug 
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
-    body 
-        h1 Hello, World!
+    header
+        a(href="/") Home
+        a(href="/index") Index
+
+        h1 Hello and Welcome !
         p This is a sample Pug template.
+
+    main
         block content
+            h3 This is the default content from the template.pug file.  
+            p This is some additional content in the main block.
+    footer
