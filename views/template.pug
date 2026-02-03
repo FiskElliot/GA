@@ -6,14 +6,23 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
     header
-        a(href="/") Home
-        a(href="/index") Index
+        nav 
+            a(href="/") Home
+            a(href="/index") Index
 
-        h1 Hello and Welcome !
-        p This is a sample Pug template.
+        .headerDiv
+            h1 Hello and Welcome !
+            p This is a sample Pug template.
 
     main
         block content
-            h3 This is the default content from the template.pug file.  
-            p This is some additional content in the main block.
+            .mainDiv 
+                h3 This is the default content from the template.pug file.  
+                p This is some additional content in the main block.
+
     footer
+        .footerDiv
+            p &copy; 2024 My Pug Template. All rights reserved. 
+        
+        form(action="/index/create", method="post")
+            button(type="submit") Submit Form

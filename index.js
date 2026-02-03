@@ -16,3 +16,7 @@ app.get("/", (req, res) => {
 app.get("/index", (req, res) => {
     res.render("index");
 });
+
+app.post("/index/create", (req, res) => {
+    res.send("Form submitted!");
+});
