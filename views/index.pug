@@ -1,13 +1,1 @@
 extends template.pug 
-
-block content
-    h1 Create Item 
-    
-    form(action="/create", method="post")
-        input(type="text", name="name", placeholder="Item Name", required)
-        button(type="submit") Add Item
-    
-    h2 Items 
-    ul
-        each item in items
-            li= item.name

@@ -9,7 +9,7 @@ const app = express();
 app.listen(3000, () => {console.log("Server running on http://localhost:3000");});
 app.set("view engine", "pug")
 
-let items = [];
+const {getData, saveData} = require("./db");
 
 
 
@@ -18,18 +18,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/index", (req, res) => {
-    res.render("index", {items});
+    res.render("index");
 });
 
-app.post("/create", (req, res) => {
+app.get("/products", (req, res) => {
 
-    const {name} = req.body;
-
-    items.push({name});
-
-    res.redirect("/index");
-
-
+    const data = getData();
+    
 
 
 });

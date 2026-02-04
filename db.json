@@ -1,0 +1,52 @@
+[
+		{
+			"id": 1,
+			"name": "Ekologisk äpplejuice",
+			"price": 29.9,
+			"stock": 120,
+			"category": "Dryck",
+			"description": "Kallpressad, 100% ekologisk äpplejuice från lokala odlare."
+		},
+		{
+			"id": 2,
+			"name": "Anteckningsbok A5",
+			"price": 49.0,
+			"stock": 75,
+			"category": "Papeteri",
+			"description": "Mjukband, linjerat papper, 120 sidor."
+		},
+		{
+			"id": 3,
+			"name": "Vattentät ryggsäck 20L",
+			"price": 399.0,
+			"stock": 34,
+			"category": "Utrustning",
+			"description": "Lätt och slitstark ryggsäck för pendling och friluftsliv."
+		},
+		{
+			"id": 4,
+			"name": "Trådlösa hörlurar",
+			"price": 699.0,
+			"stock": 18,
+			"category": "Elektronik",
+			"description": "Bluetooth 5.2, brusreducering och 30h batteritid."
+		},
+		{
+			"id": 5,
+			"name": "Keramikkopp 300ml",
+			"price": 79.0,
+			"stock": 200,
+			"category": "Hushåll",
+			"description": "Handgjord kopp, tål diskmaskin. Finns i flera färger."
+		},
+		{
+			"id": 6,
+			"name": "USB-C laddkabel 1m",
+			"price": 99.0,
+			"stock": 150,
+			"category": "Elektronik",
+			"description": "Snabbladdning, flätad kabel med förstärkta ändar."
+		}
+]
+
+    
