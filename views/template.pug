@@ -6,9 +6,11 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
     header
-        nav 
-            a(href="/") Home
-            a(href="/index") Index
+        block nav
+            nav 
+                a(href="/") Home
+                a(href="/index") Index
+
 
         .headerDiv
             h1 Hello and Welcome !
@@ -23,6 +25,3 @@ html(lang="en")
     footer
         .footerDiv
             p &copy; 2024 My Pug Template. All rights reserved. 
-        
-        form(action="/index/create", method="post")
-            button(type="submit") Submit Form

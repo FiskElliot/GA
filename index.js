@@ -9,14 +9,27 @@ const app = express();
 app.listen(3000, () => {console.log("Server running on http://localhost:3000");});
 app.set("view engine", "pug")
 
+let items = [];
+
+
+
 app.get("/", (req, res) => {
     res.render("template");
 });
 
 app.get("/index", (req, res) => {
-    res.render("index");
+    res.render("index", {items});
 });
 
-app.post("/index/create", (req, res) => {
-    res.send("Form submitted!");
+app.post("/create", (req, res) => {
+
+    const {name} = req.body;
+
+    items.push({name});
+
+    res.redirect("/index");
+
+
+
+
 });
