@@ -1,1 +1,27 @@
-extends template.pug 
+extends template.pug
+
+block content
+    if products && products.length
+        .products
+            each p in products
+                .product(id='id_' + p.id)
+                    h3= p.name
+                    h5
+                        i= p.price
+                    p= p.description
+    else
+        p No products found.
+
+
+block form
+    .footerDiv
+        form(action="/products/create", method="post")
+            label(for="name") Product Name: 
+            input(type="text", name="name", placeholder="Product Name", required)
+            label(for="price") Product Price: 
+            input(type="text", name="price", step="0.01", placeholder="Product Price",required)
+            label(for="category") Product Category: 
+            input(type="text", name="category", placeholder="Product Category", required)
+            label(for="description") Product Description: 
+            textarea(name="description", placeholder="Product Description", required)
+            button(type="submit") Create Product

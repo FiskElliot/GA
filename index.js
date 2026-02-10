@@ -11,7 +11,7 @@ app.set("view engine", "pug")
 
 const {getData, saveData} = require("./db");
 
-
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
     res.render("template");
@@ -22,9 +22,22 @@ app.get("/index", (req, res) => {
 });
 
 app.get("/products", (req, res) => {
+    const products = getData();
+    res.render("index", { products });
+});
 
-    const data = getData();
-    
+app.post("/products/create", (req, res) => {
 
+    const products = getData();
+    const newProduct = {
+        id: Date.now(),
+        name: req.body.name,
+        price: parseFloat(req.body.price),
+        category: req.body.category,
+        description: req.body.description
+    };
 
+    products.push(newProduct);
+    saveData(products);
+    res.redirect("/products");
 });
