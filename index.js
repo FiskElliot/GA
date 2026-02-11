@@ -32,8 +32,10 @@ app.post("/products/create", (req, res) => {
     const newProduct = {
         id: Date.now(),
         name: req.body.name,
-        price: parseFloat(req.body.price),
-        category: req.body.category,
+        ppg: req.body.ppg,
+        rpg: req.body.rpg,
+        apg: req.body.apg,
+        image: req.body.image,
         description: req.body.description
     };
 

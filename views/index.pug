@@ -5,9 +5,9 @@ block content
         .products
             each p in products
                 .product(id='id_' + p.id)
+                    img(src=p.image, alt="")
                     h3= p.name
-                    h5
-                        i= p.price + "$"
+                    p PPG: #{p.ppg} | RPG: #{p.rpg} | APG: #{p.apg}
                     p= p.description
     else
         p No products found.
@@ -26,4 +26,6 @@ block form
             input(type="text", name="apg", step="0.1", placeholder="Player APG", required)
             label(for="description") Player Description: 
             textarea(name="description", placeholder="Player Description", required)
+            label(for="image") Player Image URL: 
+            input(type="text", name="image", placeholder="Player Image URL")
             button(type="submit") Create Player

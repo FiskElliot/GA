@@ -40,5 +40,38 @@
       "price": 99,
       "category": "Elektronik",
       "description": "Snabbladdning, flätad kabel med förstärkta ändar."
+   },
+   {
+      "id": 1770807278782,
+      "name": "LeBron James",
+      "price": null,
+      "description": "Mid"
+   },
+   {
+      "id": 1770807329015,
+      "name": "gweb",
+      "price": null,
+      "description": "wfwa"
+   },
+   {
+      "id": 1770807414473,
+      "name": "LeBron James",
+      "price": null,
+      "description": "ew"
+   },
+   {
+      "id": 1770807423847,
+      "name": "LeBron James",
+      "price": null,
+      "description": "gere"
+   },
+   {
+      "id": 1770807525582,
+      "name": "LeBron James",
+      "ppg": "41",
+      "rpg": "3",
+      "apg": "14",
+      "image": "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSRuMdGJoDeH-3CNIenasVEYdNpCszU7PYdiTasaH2XiLN0Qf9PoLHDBRn62SVkq-j1vs_zJNR-tzEwvF4",
+      "description": "Gang"
    }
 ]
