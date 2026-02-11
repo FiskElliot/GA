@@ -1,77 +1,565 @@
 [
-   {
-      "id": 1,
-      "name": "Ekologisk äpplejuice",
-      "price": 29.9,
-      "category": "Dryck",
-      "description": "Kallpressad, 100% ekologisk äpplejuice från lokala odlare."
-   },
-   {
-      "id": 2,
-      "name": "Anteckningsbok A5",
-      "price": 49,
-      "category": "Papeteri",
-      "description": "Mjukband, linjerat papper, 120 sidor."
-   },
-   {
-      "id": 3,
-      "name": "Vattentät ryggsäck 20L",
-      "price": 399,
-      "category": "Utrustning",
-      "description": "Lätt och slitstark ryggsäck för pendling och friluftsliv."
-   },
-   {
-      "id": 4,
-      "name": "Trådlösa hörlurar",
-      "price": 699,
-      "category": "Elektronik",
-      "description": "Bluetooth 5.2, brusreducering och 30h batteritid."
-   },
-   {
-      "id": 5,
-      "name": "Keramikkopp 300ml",
-      "price": 79,
-      "category": "Hushåll",
-      "description": "Handgjord kopp, tål diskmaskin. Finns i flera färger."
-   },
-   {
-      "id": 6,
-      "name": "USB-C laddkabel 1m",
-      "price": 99,
-      "category": "Elektronik",
-      "description": "Snabbladdning, flätad kabel med förstärkta ändar."
-   },
-   {
-      "id": 1770807278782,
-      "name": "LeBron James",
-      "price": null,
-      "description": "Mid"
-   },
-   {
-      "id": 1770807329015,
-      "name": "gweb",
-      "price": null,
-      "description": "wfwa"
-   },
-   {
-      "id": 1770807414473,
-      "name": "LeBron James",
-      "price": null,
-      "description": "ew"
-   },
-   {
-      "id": 1770807423847,
-      "name": "LeBron James",
-      "price": null,
-      "description": "gere"
-   },
-   {
-      "id": 1770807525582,
-      "name": "LeBron James",
-      "ppg": "41",
-      "rpg": "3",
-      "apg": "14",
-      "image": "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSRuMdGJoDeH-3CNIenasVEYdNpCszU7PYdiTasaH2XiLN0Qf9PoLHDBRn62SVkq-j1vs_zJNR-tzEwvF4",
-      "description": "Gang"
-   }
+  {
+    "id": 1,
+    "name": "LeBron James",
+    "ppg": 27.1,
+    "rpg": 7.5,
+    "apg": 7.4,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png",
+    "description": "All-time great forward for the Lakers."
+  },
+  {
+    "id": 2,
+    "name": "Stephen Curry",
+    "ppg": 29.4,
+    "rpg": 6.1,
+    "apg": 6.3,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png",
+    "description": "Greatest shooter in NBA history."
+  },
+  {
+    "id": 3,
+    "name": "Kevin Durant",
+    "ppg": 28.2,
+    "rpg": 7.1,
+    "apg": 5.5,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/201142.png",
+    "description": "Elite scorer with unstoppable midrange."
+  },
+  {
+    "id": 4,
+    "name": "Giannis Antetokounmpo",
+    "ppg": 30.4,
+    "rpg": 11.5,
+    "apg": 6.5,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203507.png",
+    "description": "Dominant two-way force and NBA champion."
+  },
+  {
+    "id": 5,
+    "name": "Luka Dončić",
+    "ppg": 32.1,
+    "rpg": 8.8,
+    "apg": 8.2,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629029.png",
+    "description": "Triple-double machine and offensive wizard."
+  },
+  {
+    "id": 6,
+    "name": "Nikola Jokić",
+    "ppg": 26.4,
+    "rpg": 12.4,
+    "apg": 9.0,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203999.png",
+    "description": "MVP center with elite passing ability."
+  },
+  {
+    "id": 101,
+    "name": "Jayson Tatum",
+    "ppg": 27.0,
+    "rpg": 8.1,
+    "apg": 4.9,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628369.png",
+    "description": "Elite scoring forward and franchise player for Boston."
+  },
+  {
+    "id": 102,
+    "name": "Joel Embiid",
+    "ppg": 30.1,
+    "rpg": 10.9,
+    "apg": 4.2,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203954.png",
+    "description": "Dominant two-way center and MVP-level talent."
+  },
+  {
+    "id": 103,
+    "name": "Anthony Davis",
+    "ppg": 24.7,
+    "rpg": 12.6,
+    "apg": 3.1,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203076.png",
+    "description": "Elite defender and versatile big man."
+  },
+  {
+    "id": 104,
+    "name": "Devin Booker",
+    "ppg": 27.8,
+    "rpg": 4.5,
+    "apg": 6.8,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626164.png",
+    "description": "Smooth scorer and clutch shot-maker."
+  },
+  {
+    "id": 105,
+    "name": "Ja Morant",
+    "ppg": 25.4,
+    "rpg": 5.6,
+    "apg": 8.1,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629630.png",
+    "description": "Explosive point guard with elite athleticism."
+  },
+  {
+    "id": 106,
+    "name": "Jimmy Butler",
+    "ppg": 22.9,
+    "rpg": 5.9,
+    "apg": 5.3,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/202710.png",
+    "description": "Clutch playoff performer and two-way leader."
+  },
+  {
+    "id": 107,
+    "name": "Damian Lillard",
+    "ppg": 28.5,
+    "rpg": 4.3,
+    "apg": 7.2,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203081.png",
+    "description": "Deep-range shooter and offensive engine."
+  },
+  {
+    "id": 108,
+    "name": "Kawhi Leonard",
+    "ppg": 23.8,
+    "rpg": 6.5,
+    "apg": 3.9,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/202695.png",
+    "description": "Elite two-way wing with championship pedigree."
+  },
+  {
+    "id": 109,
+    "name": "Shai Gilgeous-Alexander",
+    "ppg": 30.0,
+    "rpg": 5.5,
+    "apg": 6.2,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628983.png",
+    "description": "Crafty scorer and MVP candidate."
+  },
+  {
+    "id": 110,
+    "name": "Donovan Mitchell",
+    "ppg": 26.6,
+    "rpg": 4.8,
+    "apg": 5.1,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628378.png",
+    "description": "Explosive scorer with playoff experience."
+  },
+  {
+    "id": 111,
+    "name": "Trae Young",
+    "ppg": 25.5,
+    "rpg": 3.0,
+    "apg": 9.8,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629027.png",
+    "description": "Elite playmaker and deep-range shooter."
+  },
+  {
+    "id": 112,
+    "name": "Zion Williamson",
+    "ppg": 24.2,
+    "rpg": 6.7,
+    "apg": 4.1,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629627.png",
+    "description": "Powerful interior scorer with elite finishing."
+  },
+  {
+    "id": 113,
+    "name": "Paul George",
+    "ppg": 22.6,
+    "rpg": 5.4,
+    "apg": 4.6,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/202331.png",
+    "description": "Two-way wing with smooth offensive game."
+  },
+  {
+    "id": 114,
+    "name": "Bradley Beal",
+    "ppg": 23.1,
+    "rpg": 4.4,
+    "apg": 5.2,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203078.png",
+    "description": "High-volume scorer and offensive threat."
+  },
+  {
+    "id": 115,
+    "name": "Jamal Murray",
+    "ppg": 21.3,
+    "rpg": 4.0,
+    "apg": 6.5,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627750.png",
+    "description": "Clutch guard and playoff performer."
+  },
+  {
+    "id": 116,
+    "name": "Kyrie Irving",
+    "ppg": 26.9,
+    "rpg": 5.1,
+    "apg": 5.4,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/202681.png",
+    "description": "Elite ball-handler and creative scorer."
+  },
+  {
+    "id": 117,
+    "name": "Jaylen Brown",
+    "ppg": 23.4,
+    "rpg": 5.6,
+    "apg": 3.5,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627759.png",
+    "description": "Athletic two-way wing and strong finisher."
+  },
+  {
+    "id": 118,
+    "name": "Tyrese Haliburton",
+    "ppg": 20.8,
+    "rpg": 3.9,
+    "apg": 10.4,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630169.png",
+    "description": "Elite passer and efficient floor general."
+  },
+  {
+    "id": 119,
+    "name": "Anthony Edwards",
+    "ppg": 24.6,
+    "rpg": 5.8,
+    "apg": 4.4,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630162.png",
+    "description": "Explosive scorer and rising superstar."
+  },
+  {
+    "id": 120,
+    "name": "Bam Adebayo",
+    "ppg": 20.4,
+    "rpg": 9.9,
+    "apg": 3.9,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628389.png",
+    "description": "Versatile defensive anchor and playmaking big."
+  },
+  {
+  "id": 121,
+  "name": "James Harden",
+  "ppg": 24.1,
+  "rpg": 5.6,
+  "apg": 10.7,
+  "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/201935.png",
+  "description": "Elite playmaker and former MVP known for step-back threes and drawing fouls."
+  },
+    {
+    "id": 201,
+    "name": "Mikal Bridges",
+    "ppg": 21.2,
+    "rpg": 4.5,
+    "apg": 3.7,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628969.png",
+    "description": "Durable two-way wing with strong defensive impact."
+  },
+  {
+    "id": 202,
+    "name": "OG Anunoby",
+    "ppg": 17.6,
+    "rpg": 5.3,
+    "apg": 2.8,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628384.png",
+    "description": "Elite perimeter defender and improving scorer."
+  },
+  {
+    "id": 203,
+    "name": "Fred VanVleet",
+    "ppg": 19.3,
+    "rpg": 3.9,
+    "apg": 7.2,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627832.png",
+    "description": "Undrafted champion and floor general."
+  },
+  {
+    "id": 204,
+    "name": "Marcus Smart",
+    "ppg": 14.8,
+    "rpg": 3.4,
+    "apg": 6.1,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203935.png",
+    "description": "Defensive-minded guard and emotional leader."
+  },
+  {
+    "id": 205,
+    "name": "Andrew Wiggins",
+    "ppg": 18.1,
+    "rpg": 4.9,
+    "apg": 2.4,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203952.png",
+    "description": "Athletic wing and strong on-ball defender."
+  },
+  {
+    "id": 206,
+    "name": "Rudy Gobert",
+    "ppg": 13.7,
+    "rpg": 12.3,
+    "apg": 1.2,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203497.png",
+    "description": "Defensive anchor and elite rim protector."
+  },
+  {
+    "id": 207,
+    "name": "Deandre Ayton",
+    "ppg": 17.9,
+    "rpg": 10.2,
+    "apg": 1.6,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629028.png",
+    "description": "Efficient interior scorer and rebounder."
+  },
+  {
+    "id": 208,
+    "name": "Clint Capela",
+    "ppg": 12.4,
+    "rpg": 11.0,
+    "apg": 0.9,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203991.png",
+    "description": "Rim-running center and strong rebound presence."
+  },
+  {
+    "id": 209,
+    "name": "Desmond Bane",
+    "ppg": 23.0,
+    "rpg": 4.4,
+    "apg": 5.2,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630217.png",
+    "description": "Elite shooter and rising offensive star."
+  },
+  {
+    "id": 210,
+    "name": "CJ McCollum",
+    "ppg": 20.9,
+    "rpg": 4.3,
+    "apg": 5.7,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203468.png",
+    "description": "Smooth scoring guard with deep range."
+  },
+  {
+    "id": 211,
+    "name": "Julius Randle",
+    "ppg": 22.4,
+    "rpg": 9.8,
+    "apg": 4.1,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203944.png",
+    "description": "Physical forward and strong rebounder."
+  },
+  {
+    "id": 212,
+    "name": "Brook Lopez",
+    "ppg": 15.9,
+    "rpg": 6.7,
+    "apg": 1.3,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/201572.png",
+    "description": "Stretch big and elite shot blocker."
+  },
+  {
+    "id": 213,
+    "name": "Myles Turner",
+    "ppg": 17.1,
+    "rpg": 7.5,
+    "apg": 1.4,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626167.png",
+    "description": "Rim protector with three-point range."
+  },
+  {
+    "id": 214,
+    "name": "Josh Giddey",
+    "ppg": 16.2,
+    "rpg": 7.8,
+    "apg": 6.4,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630581.png",
+    "description": "Tall playmaker with strong court vision."
+  },
+  {
+    "id": 215,
+    "name": "RJ Barrett",
+    "ppg": 18.7,
+    "rpg": 5.4,
+    "apg": 2.9,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629628.png",
+    "description": "Physical wing and aggressive driver."
+  },
+  {
+    "id": 216,
+    "name": "Jordan Poole",
+    "ppg": 20.4,
+    "rpg": 2.7,
+    "apg": 4.5,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629673.png",
+    "description": "Creative scorer with deep shooting range."
+  },
+  {
+    "id": 217,
+    "name": "Malcolm Brogdon",
+    "ppg": 15.8,
+    "rpg": 4.2,
+    "apg": 4.9,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627763.png",
+    "description": "Efficient combo guard and former Rookie of the Year."
+  },
+  {
+    "id": 218,
+    "name": "Aaron Gordon",
+    "ppg": 16.3,
+    "rpg": 6.6,
+    "apg": 3.0,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203932.png",
+    "description": "Athletic forward and strong defender."
+  },
+  {
+    "id": 219,
+    "name": "Kyle Kuzma",
+    "ppg": 21.7,
+    "rpg": 7.3,
+    "apg": 3.6,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628398.png",
+    "description": "Versatile scorer with size and confidence."
+  },
+  {
+    "id": 220,
+    "name": "Nikola Vucevic",
+    "ppg": 18.9,
+    "rpg": 10.5,
+    "apg": 3.2,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/202696.png",
+    "description": "Skilled offensive center with range."
+  },
+  {
+    "id": 221,
+    "name": "Domantas Sabonis",
+    "ppg": 19.1,
+    "rpg": 12.3,
+    "apg": 7.2,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627734.png",
+    "description": "Triple-double threat big man and elite rebounder."
+  },
+  {
+    "id": 222,
+    "name": "Lauri Markkanen",
+    "ppg": 24.5,
+    "rpg": 8.4,
+    "apg": 1.9,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628374.png",
+    "description": "Stretch forward and All-Star scorer."
+  },
+  {
+    "id": 223,
+    "name": "Terry Rozier",
+    "ppg": 21.1,
+    "rpg": 4.3,
+    "apg": 5.1,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626179.png",
+    "description": "Aggressive scoring guard with confidence."
+  },
+  {
+    "id": 224,
+    "name": "Harrison Barnes",
+    "ppg": 16.8,
+    "rpg": 4.9,
+    "apg": 1.7,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203084.png",
+    "description": "Veteran wing with championship experience."
+  },
+  {
+    "id": 225,
+    "name": "Jarrett Allen",
+    "ppg": 14.5,
+    "rpg": 9.8,
+    "apg": 1.7,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628386.png",
+    "description": "Strong defensive center and lob threat."
+  },
+  {
+    "id": 226,
+    "name": "Caris LeVert",
+    "ppg": 16.1,
+    "rpg": 4.3,
+    "apg": 4.2,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627747.png",
+    "description": "Slashing scorer with creative finishing."
+  },
+  {
+    "id": 227,
+    "name": "Buddy Hield",
+    "ppg": 18.5,
+    "rpg": 4.6,
+    "apg": 2.8,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627741.png",
+    "description": "High-volume three-point shooter."
+  },
+  {
+    "id": 228,
+    "name": "Robert Williams III",
+    "ppg": 10.2,
+    "rpg": 8.3,
+    "apg": 1.4,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629057.png",
+    "description": "Athletic rim protector and lob finisher."
+  },
+  {
+    "id": 229,
+    "name": "Michael Porter Jr.",
+    "ppg": 19.8,
+    "rpg": 5.5,
+    "apg": 1.1,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629008.png",
+    "description": "Elite catch-and-shoot scorer with size."
+  },
+  {
+    "id": 230,
+    "name": "Bogdan Bogdanovic",
+    "ppg": 17.3,
+    "rpg": 3.9,
+    "apg": 3.4,
+    "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/203992.png",
+    "description": "Skilled shooter and secondary playmaker."
+  },
+  {"id":301,"name":"Austin Reaves","ppg":15.9,"rpg":4.3,"apg":5.5,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630559.png","description":"Smart combo guard and efficient scorer."},
+  {"id":302,"name":"Derrick White","ppg":16.8,"rpg":4.2,"apg":4.9,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1628401.png","description":"Two-way guard with strong defensive IQ."},
+  {"id":303,"name":"Kristian Braun","ppg":8.6,"rpg":3.1,"apg":1.2,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1631128.png","description":"Young athletic wing with defensive upside."},
+  {"id":304,"name":"Immanuel Quickley","ppg":17.0,"rpg":3.8,"apg":4.9,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630193.png","description":"Microwave scorer off the dribble."},
+  {"id":305,"name":"Jonathan Kuminga","ppg":12.2,"rpg":4.1,"apg":2.0,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630228.png","description":"Explosive forward with high ceiling."},
+  {"id":306,"name":"Gary Trent Jr.","ppg":18.4,"rpg":2.6,"apg":2.1,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1629018.png","description":"Perimeter scorer and streaky shooter."},
+  {"id":307,"name":"Anfernee Simons","ppg":21.1,"rpg":2.6,"apg":4.1,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1629014.png","description":"Dynamic scoring guard with range."},
+  {"id":308,"name":"Collin Sexton","ppg":18.6,"rpg":2.9,"apg":3.9,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1629012.png","description":"Aggressive downhill scoring guard."},
+  {"id":309,"name":"Walker Kessler","ppg":9.2,"rpg":8.4,"apg":0.9,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1631117.png","description":"Shot-blocking center with strong rim presence."},
+  {"id":310,"name":"Herbert Jones","ppg":10.8,"rpg":3.8,"apg":2.5,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630529.png","description":"Defensive specialist on the wing."},
+  {"id":311,"name":"Tobias Harris","ppg":17.2,"rpg":6.5,"apg":3.1,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/202699.png","description":"Versatile forward with scoring ability."},
+  {"id":312,"name":"Mitchell Robinson","ppg":7.8,"rpg":9.4,"apg":0.6,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1629011.png","description":"Elite offensive rebounder and rim protector."},
+  {"id":313,"name":"Lonzo Ball","ppg":13.0,"rpg":5.4,"apg":5.1,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1628366.png","description":"Pass-first guard with defensive instincts."},
+  {"id":314,"name":"Alex Caruso","ppg":9.7,"rpg":3.1,"apg":3.5,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1627936.png","description":"Defensive pest and hustle player."},
+  {"id":315,"name":"Norman Powell","ppg":17.8,"rpg":2.9,"apg":1.8,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1626181.png","description":"Efficient scoring wing."},
+  {"id":316,"name":"Bojan Bogdanovic","ppg":18.2,"rpg":3.8,"apg":2.5,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/202711.png","description":"Veteran forward with elite shooting touch."},
+  {"id":317,"name":"Markelle Fultz","ppg":14.0,"rpg":3.9,"apg":5.7,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1628365.png","description":"Slashing guard and playmaker."},
+  {"id":318,"name":"Jalen Suggs","ppg":12.5,"rpg":3.2,"apg":3.8,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630591.png","description":"Defensive-minded young guard."},
+  {"id":319,"name":"Kevin Love","ppg":8.5,"rpg":6.4,"apg":1.9,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/201567.png","description":"Veteran stretch big and rebounder."},
+  {"id":320,"name":"Patrick Beverley","ppg":6.4,"rpg":3.1,"apg":2.9,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/201976.png","description":"Defensive guard with high energy."},
+  {"id":321,"name":"Josh Hart","ppg":10.4,"rpg":7.8,"apg":3.6,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1628404.png","description":"Rebounding guard with hustle."},
+  {"id":322,"name":"Mo Bamba","ppg":7.3,"rpg":4.6,"apg":0.8,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1628964.png","description":"Shot-blocking stretch center."},
+  {"id":323,"name":"Dennis Schroder","ppg":13.5,"rpg":2.6,"apg":4.6,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/203471.png","description":"Quick guard with scoring ability."},
+  {"id":324,"name":"Kelly Oubre Jr.","ppg":16.9,"rpg":5.2,"apg":1.3,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1626162.png","description":"Athletic wing and transition scorer."},
+  {"id":325,"name":"Isaiah Stewart","ppg":11.4,"rpg":8.1,"apg":1.2,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630191.png","description":"Physical big with toughness."},
+  {"id":326,"name":"Onyeka Okongwu","ppg":9.9,"rpg":7.2,"apg":1.0,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630168.png","description":"Efficient rim finisher and defender."},
+  {"id":327,"name":"PJ Washington","ppg":15.7,"rpg":4.8,"apg":2.3,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1629023.png","description":"Stretch forward with scoring touch."},
+  {"id":328,"name":"Rui Hachimura","ppg":13.4,"rpg":4.3,"apg":1.1,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1629060.png","description":"Midrange specialist forward."},
+  {"id":329,"name":"Monte Morris","ppg":10.3,"rpg":2.5,"apg":4.4,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1628420.png","description":"Steady backup point guard."},
+  {"id":330,"name":"Seth Curry","ppg":13.2,"rpg":2.1,"apg":2.8,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/203552.png","description":"Elite three-point shooter."},
+  {"id":331,"name":"Gordon Hayward","ppg":14.1,"rpg":4.7,"apg":3.6,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/202330.png","description":"Veteran wing with all-around game."},
+  {"id":332,"name":"Jonas Valanciunas","ppg":15.6,"rpg":10.8,"apg":1.9,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/202685.png","description":"Strong post scorer and rebounder."},
+  {"id":333,"name":"Spencer Dinwiddie","ppg":16.7,"rpg":3.3,"apg":6.2,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/203915.png","description":"Shot-creating combo guard."},
+  {"id":334,"name":"Jae Crowder","ppg":9.5,"rpg":4.2,"apg":1.8,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/203109.png","description":"3-and-D veteran forward."},
+  {"id":335,"name":"Nicolas Claxton","ppg":12.6,"rpg":9.2,"apg":1.9,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1629651.png","description":"Switchable defensive center."},
+  {"id":336,"name":"Bennedict Mathurin","ppg":16.7,"rpg":4.1,"apg":1.5,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1631103.png","description":"Aggressive young scoring wing."},
+  {"id":337,"name":"Jalen Duren","ppg":9.8,"rpg":8.9,"apg":1.1,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1631105.png","description":"Athletic young center."},
+  {"id":338,"name":"Cam Thomas","ppg":21.3,"rpg":3.4,"apg":2.7,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630560.png","description":"Pure bucket-getter."},
+  {"id":339,"name":"Trey Murphy III","ppg":14.8,"rpg":3.6,"apg":1.3,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630530.png","description":"Athletic shooter with upside."},
+  {"id":340,"name":"Keegan Murray","ppg":14.5,"rpg":4.5,"apg":1.2,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1631099.png","description":"Stretch forward and floor spacer."},
+  {"id":341,"name":"De'Andre Hunter","ppg":15.2,"rpg":4.0,"apg":1.3,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1629631.png","description":"Strong two-way wing."},
+  {"id":342,"name":"Patrick Williams","ppg":10.1,"rpg":4.2,"apg":1.2,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630172.png","description":"Young defensive forward."},
+  {"id":343,"name":"Dillon Brooks","ppg":14.3,"rpg":3.3,"apg":2.6,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1628415.png","description":"Physical defender and confident scorer."},
+  {"id":344,"name":"Jusuf Nurkic","ppg":13.3,"rpg":9.1,"apg":2.6,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/203994.png","description":"Skilled passing big man."},
+  {"id":345,"name":"Obi Toppin","ppg":9.9,"rpg":3.7,"apg":1.2,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630167.png","description":"High-flying forward."},
+  {"id":346,"name":"Payton Pritchard","ppg":7.8,"rpg":2.2,"apg":3.1,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630202.png","description":"Energetic guard off the bench."},
+  {"id":347,"name":"Cameron Johnson","ppg":15.5,"rpg":4.4,"apg":2.3,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1629661.png","description":"Sharpshooting forward."},
+  {"id":348,"name":"Isaac Okoro","ppg":9.5,"rpg":3.0,"apg":1.6,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1630171.png","description":"Perimeter defensive specialist."},
+  {"id":349,"name":"Tyus Jones","ppg":10.8,"rpg":2.7,"apg":7.4,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1626145.png","description":"Assist-to-turnover ratio master."},
+  {"id":350,"name":"Daniel Gafford","ppg":9.4,"rpg":6.8,"apg":0.9,"image":"https://cdn.nba.com/headshots/nba/latest/1040x760/1629655.png","description":"Rim-running shot blocker."}
 ]
