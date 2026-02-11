@@ -7,7 +7,7 @@ block content
                 .product(id='id_' + p.id)
                     h3= p.name
                     h5
-                        i= p.price
+                        i= p.price + "$"
                     p= p.description
     else
         p No products found.
@@ -16,12 +16,14 @@ block content
 block form
     .footerDiv
         form(action="/products/create", method="post")
-            label(for="name") Product Name: 
-            input(type="text", name="name", placeholder="Product Name", required)
-            label(for="price") Product Price: 
-            input(type="text", name="price", step="0.01", placeholder="Product Price",required)
-            label(for="category") Product Category: 
-            input(type="text", name="category", placeholder="Product Category", required)
-            label(for="description") Product Description: 
-            textarea(name="description", placeholder="Product Description", required)
-            button(type="submit") Create Product
+            label(for="name") Player Name: 
+            input(type="text", name="name", placeholder="Player Name", required)
+            label(for="price") Player PPG: 
+            input(type="text", name="ppg", step="0.1", placeholder="Player PPG",required)
+            label(for="category") Player RPG: 
+            input(type="text", name="rpg", step="0.1",placeholder="Player RPG", required)
+            label(for="category") Player APG: 
+            input(type="text", name="apg", step="0.1", placeholder="Player APG", required)
+            label(for="description") Player Description: 
+            textarea(name="description", placeholder="Player Description", required)
+            button(type="submit") Create Player
