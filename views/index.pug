@@ -1,21 +1,23 @@
 extends template.pug
 
 block content
-    if products && products.length
-        .products
-            each p in products
-                .product(id='id_' + p.id)
-                    img(src=p.image, alt="")
-                    h3= p.name
-                    p PPG: #{p.ppg} | RPG: #{p.rpg} | APG: #{p.apg}
-                    p= p.description
+    if players && players.length
+        .players
+            each p in players
+                a(href="/index")
+                    .player(id='id_' + p.id)
+                        img(src=p.image, alt="")
+                        h3= p.name
+                        p PPG: #{p.ppg} | RPG: #{p.rpg} | APG: #{p.apg}
+                        p= p.description
+
     else
-        p No products found.
+        p No players found.
 
 
 block form
     .footerDiv
-        form(action="/products/create", method="post")
+        form(action="/players/create", method="post")
             label(for="name") Player Name: 
             input(type="text", name="name", placeholder="Player Name", required)
             label(for="price") Player PPG: 

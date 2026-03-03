@@ -21,15 +21,15 @@ app.get("/index", (req, res) => {
     res.render("index");
 });
 
-app.get("/products", (req, res) => {
-    const products = getData();
-    res.render("index", { products });
+app.get("/players", (req, res) => {
+    const players = getData();
+    res.render("index", { players });
 });
 
-app.post("/products/create", (req, res) => {
+app.post("/players/create", (req, res) => {
 
-    const products = getData();
-    const newProduct = {
+    const players = getData();
+    const newplayer = {
         id: Date.now(),
         name: req.body.name,
         ppg: req.body.ppg,
@@ -39,7 +39,7 @@ app.post("/products/create", (req, res) => {
         description: req.body.description
     };
 
-    products.push(newProduct);
-    saveData(products);
-    res.redirect("/products");
+    players.push(newplayer);
+    saveData(players);
+    res.redirect("/players");
 });
