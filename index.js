@@ -9,6 +9,43 @@ const app = express();
 app.listen(3000, () => {console.log("Server running on http://localhost:3000");});
 app.set("view engine", "pug")
 
+const rawTeams = [
+    'atlanta_hawks',
+    'boston_celtics',
+    'brooklyn_nets',
+    'charlotte_hornets',
+    'chicago_bulls',
+    'cleveland_cavaliers',
+    'dallas_mavericks',
+    'denver_nuggets',
+    'detroit_pistons',
+    'golden_state_warriors',
+    'houston_rockets',
+    'indiana_pacers',
+    'los_angeles_clippers',
+    'los_angeles_lakers',
+    'memphis_grizzlies',
+    'miami_heat',
+    'milwaukee_bucks',
+    'minnesota_timberwolves',
+    'new_orleans_pelicans',
+    'new_york_knicks',
+    'oklahoma_city_thunder',
+    'orlando_magic',
+    'philadelphia_76ers',
+    'phoenix_suns',
+    'portland_trail_blazers',
+    'sacramento_kings',
+    'san_antonio_spurs',
+    'toronto_raptors',
+    'utah_jazz',
+    'washington_wizards'
+];
+
+const teams = rawTeams.map(t =>
+    t.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+);
+
 const {getData, saveData} = require("./db");
 
 app.use(express.urlencoded({ extended: true }));
@@ -18,12 +55,19 @@ app.get("/", (req, res) => {
 });
 
 app.get("/index", (req, res) => {
-    res.render("index");
+    res.render("index", { teams });
 });
 
 app.get("/players", (req, res) => {
-    const players = getData();
-    res.render("index", { players });
+    let players = getData();
+
+    // apply team filter if provided
+    const team = req.query.team;
+    if (team && team.length) {
+        players = players.filter(p => p.team === team);
+    }
+
+    res.render("index", { players, teams, team });
 });
 
 app.post("/players/create", (req, res) => {

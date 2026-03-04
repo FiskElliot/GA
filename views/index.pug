@@ -14,6 +14,19 @@ block content
     else
         p No players found.
 
+block players 
+    .headerDiv
+        h1 NBA-Players
+        //- filtering form: GET request to /players
+        form(action="/players", method="get")
+            select(name="team")
+                option(value="") Select Team
+                each t in teams
+                    option(value=t selected=(team==t))= t
+            button(type="submit") Filter
+        //- creation form still available
+        form(action="/players/create", method="post")
+            input(type="search", name="name", placeholder="Player Name")
 
 block form
     .footerDiv

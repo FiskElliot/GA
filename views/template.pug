@@ -12,10 +12,10 @@ html(lang="en")
                 a(href="/index") Index
                 a(href="/players") Players
 
-
-        .headerDiv
-            h1 Hello and Welcome !
-            p This is a sample Pug template.
+        block players
+            .headerDiv
+                h1 Hello and Welcome !
+                p This is a sample Pug template.
 
     main
         block content
