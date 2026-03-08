@@ -1,0 +1,34 @@
+extends template.pug 
+
+block content
+    if players && players.length
+        .players
+            each p in players
+                .player(id='id_' + p.id)
+                    h3= p.name
+                    h4= p.team
+                    p PPG: #{p.ppg} | RPG: #{p.rpg} | APG: #{p.apg}
+                    p= p.description
+    else
+        p No players found.
+
+block form
+    .footerDiv
+        form(action="/myPlayer/create", method="post")
+            label(for="name") Player Name: 
+            input(type="text", name="name", placeholder="Player Name", required)
+            label(for="team") Player Team: 
+            select(name="team")
+                option(value="") Select Team
+                each t in teams
+                    option(value=t selected=(team==t))= t
+            label(for="price") Player PPG: 
+            input(type="text", name="ppg", step="0.1", placeholder="Player PPG",required)
+            label(for="category") Player RPG: 
+            input(type="text", name="rpg", step="0.1",placeholder="Player RPG", required)
+            label(for="category") Player APG: 
+            input(type="text", name="apg", step="0.1", placeholder="Player APG", required)
+            label(for="description") Player Description: 
+            textarea(name="description", placeholder="Player Description", required)
+            button(type="submit") Create Player
+

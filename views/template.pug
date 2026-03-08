@@ -1,0 +1,29 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        include style.pug 
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    header
+        block nav
+            nav 
+                a(href="/") Home
+                a(href="/myPlayer") MyPlayer
+                a(href="/players") Players
+
+        block players
+            .headerDiv
+                h1 Hello and Welcome !
+                p This is a sample Pug template.
+
+    main
+        block content
+            .mainDiv 
+                h3 This is the default content from the template.pug file.  
+                p This is some additional content in the main block.
+
+    footer
+        block form
+             .footerDiv
+                p &copy; 2024 My Pug Template. All rights reserved. 

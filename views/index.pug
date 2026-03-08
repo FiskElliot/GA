@@ -1,0 +1,29 @@
+extends template.pug
+
+block content
+    if players && players.length
+        .players
+            each p in players
+                a(href="/index")
+                    .player(id='id_' + p.id)
+                        img(src=p.image, alt="")
+                        h3= p.name
+                        p PPG: #{p.ppg} | RPG: #{p.rpg} | APG: #{p.apg}
+                        p= p.description
+
+    else
+        p No players found.
+
+block players 
+    .headerDiv
+        h1 NBA-Players
+        //- filtering form: GET request to /players
+        form(action="/players", method="get")
+            select(name="team")
+                option(value="") Select Team
+                each t in teams
+                    option(value=t selected=(team==t))= t
+            button(type="submit") Filter
+        //- creation form still available
+        form(action="/players/create", method="post")
+            input(type="search", name="name", placeholder="Player Name")
