@@ -5,10 +5,27 @@ block content
         .players
             each p in players
                 .player(id='id_' + p.id)
-                    h3= p.name
-                    h4= p.team
-                    p PPG: #{p.ppg} | RPG: #{p.rpg} | APG: #{p.apg}
-                    p= p.description
+                    .playerContent
+                        .playerInfo
+                            h2= p.name
+                            h3= p.team
+                            p= p.description
+
+                            p Layup: #{p.lay} | Mid-Range: #{p.mR} | 3PT: #{p.tP} | Dunk: #{p.dunk}
+                            p Defence: #{p.def} | Rebound: #{p.reb} | Handles: #{p.hand} | Passing: #{p.pass} | Speed: #{p.spd}
+
+                            form(action="/myPlayer/upgrade/" + p.id, method="get")
+                                button(type="submit") Upgrade Player
+                            form(action="/myPlayer/delete/" + p.id, method="post")
+                                button(type="submit", onclick="return confirm('Are you sure you want to delete this player?')") Delete Player
+
+                        .overallBox
+                            - const overall = (Number(p.lay) || 0) + (Number(p.mR) || 0) + (Number(p.tP) || 0) + (Number(p.dunk) || 0) + (Number(p.def) || 0) + (Number(p.reb) || 0) + (Number(p.hand) || 0) + (Number(p.pass) || 0) + (Number(p.spd) || 0)
+                            - const overallAvg = overall / 9
+
+                            h1= Math.round(overallAvg)
+                            p Overall
+
     else
         p No players found.
 
@@ -18,16 +35,45 @@ block form
             label(for="name") Player Name: 
             input(type="text", name="name", placeholder="Player Name", required)
             label(for="team") Player Team: 
-            select(name="team")
+            select(name="team", required)
                 option(value="") Select Team
                 each t in teams
                     option(value=t selected=(team==t))= t
-            label(for="price") Player PPG: 
-            input(type="text", name="ppg", step="0.1", placeholder="Player PPG",required)
-            label(for="category") Player RPG: 
-            input(type="text", name="rpg", step="0.1",placeholder="Player RPG", required)
-            label(for="category") Player APG: 
-            input(type="text", name="apg", step="0.1", placeholder="Player APG", required)
+
+
+
+
+            label(for="lay") Player Layup: 
+            input#lay(type="number", name="lay", min="25", max="99", step="1", placeholder="25 - 99", required)
+
+            label(for="mR") Player Mid-Range: 
+            input#mR(type="number", name="mR", min="25", max="99", step="1", placeholder="25 - 99", required)
+
+            label(for="tP") Player Three-Pointer: 
+            input#tP(type="number", name="tP", min="25", max="99", step="1", placeholder="25 - 99", required)
+
+            label(for="dunk") Player Dunk: 
+            input#dunk(type="number", name="dunk", min="25", max="99", step="1", placeholder="25 - 99", required)
+
+            label(for="def") Player Defence: 
+            input#def(type="number", name="def", min="25", max="99", step="1", placeholder="25 - 99", required)
+
+            label(for="reb") Player Rebound: 
+            input#reb(type="number", name="reb", min="25", max="99", step="1", placeholder="25 - 99", required)
+
+            label(for="hand") Player Handles: 
+            input#hand(type="number", name="hand", min="25", max="99", step="1", placeholder="25 - 99", required)
+
+            label(for="pass") Player Passing: 
+            input#pass(type="number", name="pass", min="25", max="99", step="1", placeholder="25 - 99", required)
+
+            label(for="spd") Player Speed: 
+            input#spd(type="number", name="spd", min="25", max="99", step="1", placeholder="25 - 99", required)
+
+
+
+
+
             label(for="description") Player Description: 
             textarea(name="description", placeholder="Player Description", required)
             button(type="submit") Create Player

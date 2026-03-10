@@ -73,19 +73,39 @@ app.get("/myPlayer", (req, res) => {
 
 app.post("/myPlayer/create", (req, res) => {
 
+    const clampStat = (value) => {
+        const n = Number(value);
+        if (!Number.isFinite(n)) return 25;
+        return Math.min(99, Math.max(25, n));
+    };
+
     const players = getData("myPlayer.json");
     const newplayer = {
         id: Date.now(),
         team: req.body.team,
         name: req.body.name,
-        ppg: req.body.ppg,
-        rpg: req.body.rpg,
-        apg: req.body.apg,
-        image: req.body.image,
+        lay: clampStat(req.body.lay),
+        mR: clampStat(req.body.mR),
+        tP: clampStat(req.body.tP),
+        dunk: clampStat(req.body.dunk),
+        def: clampStat(req.body.def),
+        reb: clampStat(req.body.reb),
+        hand: clampStat(req.body.hand),
+        pass: clampStat(req.body.pass),
+        spd: clampStat(req.body.spd),
         description: req.body.description
     };
 
     players.push(newplayer);
     saveData(players, "myPlayer.json");
-    res.redirect("/players");
+    res.redirect("/myPlayer");
+});
+
+app.post("/myPlayer/delete/:id", (req, res) => {
+    
+    const id = req.params.id;
+    myPlayers = getData("myPlayer.json");
+    myPlayers = myPlayers.filter(p => p.id != id);
+    saveData(myPlayers, "myPlayer.json");
+    res.redirect("/myPlayer");
 });

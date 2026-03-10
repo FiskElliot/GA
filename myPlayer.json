@@ -1,11 +1,17 @@
 [
    {
-      "id": 1773000825358,
-      "team": "Golden State Warriors",
+      "id": 1773142942684,
+      "team": "Denver Nuggets",
       "name": "Elliot",
-      "ppg": "100",
-      "rpg": "100",
-      "apg": "100",
+      "lay": 97,
+      "mR": 95,
+      "tP": 99,
+      "dunk": 70,
+      "def": 90,
+      "reb": 85,
+      "hand": 99,
+      "pass": 99,
+      "spd": 99,
       "description": "The Goat"
    }
 ]

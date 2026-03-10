@@ -78,6 +78,45 @@ style.
     transition: transform 0.25s, box-shadow 0.25s;
   }
 
+  .playerContent{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem;
+  gap:1rem;
+  }
+
+  .playerInfo{
+    flex:1;
+  }
+
+  .overallBox{
+    min-width:90px;
+    height:90px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(145deg,#00e5ff,#00bcd4);
+    color:#141e30;
+
+    border-radius:12px;
+    font-weight:bold;
+    box-shadow:0 6px 14px rgba(0,0,0,0.35);
+  }
+
+  .overallBox h1{
+    margin:0;
+    font-size:2rem;
+  }
+
+  .overallBox p{
+    margin:0;
+    font-size:0.7rem;
+    letter-spacing:1px;
+  }
+
   .player:hover {
     transform: translateY(-6px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.3);
