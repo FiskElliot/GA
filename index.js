@@ -68,7 +68,7 @@ app.get("/players", (req, res) => {
 
 app.get("/myPlayer", (req, res) => {
     const players = getData('myPlayer.json');
-    res.render('myPlayer', { players, teams });
+    res.render("myPlayer", { players, teams });
 });
 
 app.post("/myPlayer/create", (req, res) => {
@@ -84,6 +84,7 @@ app.post("/myPlayer/create", (req, res) => {
         id: Date.now(),
         team: req.body.team,
         name: req.body.name,
+        statpoint: 10,
         lay: clampStat(req.body.lay),
         mR: clampStat(req.body.mR),
         tP: clampStat(req.body.tP),
@@ -106,6 +107,37 @@ app.post("/myPlayer/delete/:id", (req, res) => {
     const id = req.params.id;
     myPlayers = getData("myPlayer.json");
     myPlayers = myPlayers.filter(p => p.id != id);
+    saveData(myPlayers, "myPlayer.json");
+    res.redirect("/myPlayer");
+});
+
+app.get("/myPlayer/upgrade/:id", (req, res) => {
+
+    const id = req.params.id;
+    const myPlayers = getData("myPlayer.json");
+    const myPlayer = myPlayers.find(p => p.id == id);
+
+    if (myPlayer.statPoints <= 0) return res.redirect("/myPlayer");
+    
+    res.render("upgrade", { myPlayer });
+
+});
+
+app.post("/myPlayer/upgrade/:id", (req, res) => {
+    
+    const id = req.params.id;
+    const stat = req.body.stat;
+
+    const myPlayers = getData("myPlayer.json");
+    const myPlayer = myPlayers.find(p => p.id == id);
+
+    if (!myPlayer) return res.redirect("/myPlayer");
+
+    if (myPlayer[stat] < 99) {
+        myPlayer[stat] += 1;
+        myPlayer.statPoints -= 1;
+    }
+
     saveData(myPlayers, "myPlayer.json");
     res.redirect("/myPlayer");
 });

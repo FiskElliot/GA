@@ -10,9 +10,10 @@ block content
                             h2= p.name
                             h3= p.team
                             p= p.description
+                            p Stat Points: #{p.statPoints}
 
-                            p Layup: #{p.lay} | Mid-Range: #{p.mR} | 3PT: #{p.tP} | Dunk: #{p.dunk}
-                            p Defence: #{p.def} | Rebound: #{p.reb} | Handles: #{p.hand} | Passing: #{p.pass} | Speed: #{p.spd}
+                            p Layup: #{p.lay} | Mid-Range: #{p.mR} | 3PT: #{p.tP} | Dunk: #{p.dunk} | Defence: #{p.def} 
+                            p Rebound: #{p.reb} | Handles: #{p.hand} | Passing: #{p.pass} | Speed: #{p.spd}
 
                             form(action="/myPlayer/upgrade/" + p.id, method="get")
                                 button(type="submit") Upgrade Player
@@ -40,39 +41,24 @@ block form
                 each t in teams
                     option(value=t selected=(team==t))= t
 
-
-
-
             label(for="lay") Player Layup: 
             input#lay(type="number", name="lay", min="25", max="99", step="1", placeholder="25 - 99", required)
-
             label(for="mR") Player Mid-Range: 
             input#mR(type="number", name="mR", min="25", max="99", step="1", placeholder="25 - 99", required)
-
             label(for="tP") Player Three-Pointer: 
             input#tP(type="number", name="tP", min="25", max="99", step="1", placeholder="25 - 99", required)
-
             label(for="dunk") Player Dunk: 
             input#dunk(type="number", name="dunk", min="25", max="99", step="1", placeholder="25 - 99", required)
-
             label(for="def") Player Defence: 
             input#def(type="number", name="def", min="25", max="99", step="1", placeholder="25 - 99", required)
-
             label(for="reb") Player Rebound: 
             input#reb(type="number", name="reb", min="25", max="99", step="1", placeholder="25 - 99", required)
-
             label(for="hand") Player Handles: 
             input#hand(type="number", name="hand", min="25", max="99", step="1", placeholder="25 - 99", required)
-
             label(for="pass") Player Passing: 
             input#pass(type="number", name="pass", min="25", max="99", step="1", placeholder="25 - 99", required)
-
             label(for="spd") Player Speed: 
             input#spd(type="number", name="spd", min="25", max="99", step="1", placeholder="25 - 99", required)
-
-
-
-
 
             label(for="description") Player Description: 
             textarea(name="description", placeholder="Player Description", required)
