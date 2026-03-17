@@ -84,7 +84,7 @@ app.post("/myPlayer/create", (req, res) => {
         id: Date.now(),
         team: req.body.team,
         name: req.body.name,
-        statpoint: 10,
+        statPoints: 10,
         lay: clampStat(req.body.lay),
         mR: clampStat(req.body.mR),
         tP: clampStat(req.body.tP),

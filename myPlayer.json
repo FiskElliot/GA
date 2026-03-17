@@ -14,5 +14,21 @@
       "pass": 99,
       "spd": 99,
       "description": "The Goat"
+   },
+   {
+      "id": 1773746583205,
+      "team": "Detroit Pistons",
+      "name": "Gojo",
+      "statPoints": 10,
+      "lay": 99,
+      "mR": 99,
+      "tP": 99,
+      "dunk": 99,
+      "def": 99,
+      "reb": 99,
+      "hand": 99,
+      "pass": 99,
+      "spd": 99,
+      "description": "iGNep0"
    }
 ]
