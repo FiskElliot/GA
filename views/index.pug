@@ -3,12 +3,11 @@ extends template.pug
 block content
     if players && players.length
         .players
-            each p in players
-                a(href="/index")
+            each p, index in players
+                a(href="/index/" + index)
                     .player(id='id_' + p.id)
                         img(src=p.image, alt="")
                         h3= p.name
-                        p PPG: #{p.ppg} | RPG: #{p.rpg} | APG: #{p.apg}
                         p= p.description
 
     else

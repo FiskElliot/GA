@@ -184,4 +184,61 @@ style.
     font-size: 0.8rem;
     color: #aaa;
   }
+  .singlePlayer {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 16px;
 
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+    animation: fadeIn 0.4s ease;
+  }
+
+  .singlePlayer img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .singlePlayer h2 {
+    margin: 0.5rem 0;
+    font-size: 2rem;
+    color: #00e5ff;
+  }
+
+  .singlePlayer .stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    padding: 1rem;
+
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+  }
+
+  .singlePlayer .stats p {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .backBtn {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

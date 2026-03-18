@@ -54,6 +54,14 @@ app.get("/", (req, res) => {
     res.render("template");
 });
 
+app.get("/index/:id", (req, res) => {
+    const players = getData("db.json");
+
+    const player = players[req.params.id];
+
+    res.render("player", { player });
+});
+
 app.get("/players", (req, res) => {
     let players = getData("db.json");
 

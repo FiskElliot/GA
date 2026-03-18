@@ -1,0 +1,13 @@
+extends template.pug 
+
+block content
+    .singlePlayer
+        img(src=player.image)
+        h2= player.name
+        .stats
+            p PPG: #{player.ppg}
+            p RPG: #{player.rpg}
+            p APG: #{player.apg}
+            p= player.description
+
+            a.backBtn(href="/players") ← Back
