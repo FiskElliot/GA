@@ -33,34 +33,57 @@ block content
 block form
     .footerDiv
         form(action="/myPlayer/create", method="post")
-            label(for="name") Player Name: 
-            input(type="text", name="name", placeholder="Player Name", required)
-            label(for="team") Player Team: 
-            select(name="team", required)
-                option(value="") Select Team
-                each t in teams
-                    option(value=t selected=(team==t))= t
 
-            label(for="lay") Player Layup: 
-            input#lay(type="number", name="lay", min="25", max="99", step="1", placeholder="25 - 99", required)
-            label(for="mR") Player Mid-Range: 
-            input#mR(type="number", name="mR", min="25", max="99", step="1", placeholder="25 - 99", required)
-            label(for="tP") Player Three-Pointer: 
-            input#tP(type="number", name="tP", min="25", max="99", step="1", placeholder="25 - 99", required)
-            label(for="dunk") Player Dunk: 
-            input#dunk(type="number", name="dunk", min="25", max="99", step="1", placeholder="25 - 99", required)
-            label(for="def") Player Defence: 
-            input#def(type="number", name="def", min="25", max="99", step="1", placeholder="25 - 99", required)
-            label(for="reb") Player Rebound: 
-            input#reb(type="number", name="reb", min="25", max="99", step="1", placeholder="25 - 99", required)
-            label(for="hand") Player Handles: 
-            input#hand(type="number", name="hand", min="25", max="99", step="1", placeholder="25 - 99", required)
-            label(for="pass") Player Passing: 
-            input#pass(type="number", name="pass", min="25", max="99", step="1", placeholder="25 - 99", required)
-            label(for="spd") Player Speed: 
-            input#spd(type="number", name="spd", min="25", max="99", step="1", placeholder="25 - 99", required)
+            .field.name
+                label Player Name
+                input(type="text", name="name", required)
 
-            label(for="description") Player Description: 
-            textarea(name="description", placeholder="Player Description", required)
+            .field.team
+                label Team
+                select(name="team", required)
+                    option(value="") Select Team
+                    each t in teams
+                        option(value=t selected=(team==t))= t
+
+            .field
+                label Layup
+                input(type="number", name="lay", min="25", max="99", required)
+
+            .field
+                label Mid-Range
+                input(type="number", name="mR", min="25", max="99", required)
+
+            .field
+                label 3PT
+                input(type="number", name="tP", min="25", max="99", required)
+
+            .field
+                label Dunk
+                input(type="number", name="dunk", min="25", max="99", required)
+
+            .field
+                label Defence
+                input(type="number", name="def", min="25", max="99", required)
+
+            .field
+                label Rebound
+                input(type="number", name="reb", min="25", max="99", required)
+
+            .field
+                label Handles
+                input(type="number", name="hand", min="25", max="99", required)
+
+            .field
+                label Passing
+                input(type="number", name="pass", min="25", max="99", required)
+
+            .field
+                label Speed
+                input(type="number", name="spd", min="25", max="99", required)
+
+            .field.desc
+                label Description
+                textarea(name="description", required)
+
             button(type="submit") Create Player
 

@@ -1,244 +1,236 @@
 style.
-  /* modern dark mode with glass effect */
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: linear-gradient(145deg,#141e30,#243b55);
-    font-family: 'Roboto', sans-serif;
-    color: #e0e0e0;
-  }
-
-  header, footer {
-    padding: 1rem;
-    text-align: center;
-    backdrop-filter: blur(6px);
-    background: rgba(20,30,48,0.6);
-    color: #fff;
-  }
-
-  .headerDiv {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  .headerDiv h1 {
-    margin: 0;
-    font-size: 2rem;
-    letter-spacing: 1px;
-  }
-
-  .headerDiv form {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  select, input[type="search"], input[type="text"], textarea {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-    color: #fff;
-    font-size: 0.95rem;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  /* ensure option text is visible */
-  select option {
-    background: #141e30; /* dark background inside dropdown */
-    color: #e0e0e0;
-  }
-
-  select:focus, input:focus, textarea:focus {
-    outline: none;
-    background: rgba(255,255,255,0.2);
-    border-color: #00e5ff;
-  }
-
-  .players {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap: 1.5rem;
-    padding: 2rem 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .player {
-    background: rgba(255,255,255,0.05);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-
-  .playerContent{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:1rem;
-  gap:1rem;
-  }
-
-  .playerInfo{
-    flex:1;
-  }
-
-  .overallBox{
-    min-width:90px;
-    height:90px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    background:linear-gradient(145deg,#00e5ff,#00bcd4);
-    color:#141e30;
-
-    border-radius:12px;
-    font-weight:bold;
-    box-shadow:0 6px 14px rgba(0,0,0,0.35);
-  }
-
-  .overallBox h1{
-    margin:0;
-    font-size:2rem;
-  }
-
-  .overallBox p{
-    margin:0;
-    font-size:0.7rem;
-    letter-spacing:1px;
-  }
-
-  .player:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-  }
-
-  .player img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    display: block;
-  }
-
-  .player h3 {
-    margin: 0.75rem 1rem 0.25rem;
-    font-size: 1.1rem;
-    color: #00e5ff;
-  }
-
-  .player p {
-    margin: 0 1rem 1rem;
-    font-size: 0.9rem;
-    color: #cfd8dc;
-  }
-
-  a {
-    color: #00e5ff;
-    text-decoration: none;
-    position: relative;
-  }
-
-  a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 2px;
-    background: #00e5ff;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
-
-  a:hover::after {
-    transform: scaleX(1);
-  }
-
-  button {
-    background: #00e5ff;
-    color: #141e30;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-  }
-
-  button:hover {
-    background: #00bcd4;
-    transform: translateY(-2px);
-  }
-
-  footer .footerDiv {
-    font-size: 0.8rem;
-    color: #aaa;
-  }
-  .singlePlayer {
-    max-width: 700px;
-    margin: 3rem auto;
-    padding: 2rem;
-    border-radius: 16px;
-
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-
-    animation: fadeIn 0.4s ease;
-  }
-
-  .singlePlayer img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 1rem;
-  }
-
-  .singlePlayer h2 {
-    margin: 0.5rem 0;
-    font-size: 2rem;
-    color: #00e5ff;
-  }
-
-  .singlePlayer .stats {
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
-    padding: 1rem;
-
-    background: rgba(0,0,0,0.3);
-    border-radius: 10px;
-  }
-
-  .singlePlayer .stats p {
-    margin: 0;
-    font-weight: bold;
-  }
-
-  .backBtn {
-    display: inline-block;
-    margin-top: 1rem;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+
+    body {
+        background: #0f172a;
+        color: #e2e8f0;
     }
-  }
+
+    /* NAVBAR */
+    nav {
+        background: #020617;
+        padding: 15px;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        border-bottom: 2px solid #1e293b;
+    }
+
+    nav a {
+        color: #e2e8f0;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+    nav a:hover {
+        color: #38bdf8;
+    }
+
+    /* HEADER */
+    .headerDiv {
+        text-align: center;
+        padding: 30px 10px;
+    }
+
+    .headerDiv h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    /* MAIN */
+    .mainDiv {
+        text-align: center;
+        padding: 20px;
+    }
+
+    /* PLAYER GRID */
+    .players {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    /* PLAYER CARD */
+    .player {
+        background: #020617;
+        border-radius: 15px;
+        padding: 15px;
+        transition: 0.3s;
+        border: 1px solid #1e293b;
+    }
+
+    .player:hover {
+        transform: scale(1.03);
+        border-color: #38bdf8;
+    }
+
+    .player img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .playerContent {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .playerInfo {
+        flex: 2;
+    }
+
+    .playerInfo h2 {
+        margin-bottom: 5px;
+    }
+
+    .playerInfo h3 {
+        color: #38bdf8;
+        margin-bottom: 10px;
+    }
+
+    .playerInfo p {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+
+    /* OVERALL BOX */
+    .overallBox {
+        flex: 1;
+        background: #1e293b;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .overallBox h1 {
+        font-size: 2rem;
+        color: #22c55e;
+    }
+
+    /* BUTTONS */
+    button {
+        margin-top: 8px;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 8px;
+        background: #38bdf8;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: #0ea5e9;
+    }
+
+    form {
+        margin-top: 5px;
+    }
+
+    /* FORM (CREATE PLAYER) */
+    .footerDiv {
+        background: #020617;
+        padding: 20px;
+        margin-top: 30px;
+        border-top: 2px solid #1e293b;
+    }
+
+
+    .footerDiv form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .field.name {
+        grid-column: span 2;
+    }
+
+    .field.team {
+        grid-column: span 2;
+    }
+
+    .field.desc {
+        grid-column: span 4;
+    }
+
+    textarea {
+        min-height: 80px;
+    }
+
+    button {
+        grid-column: span 4;
+    }
+
+    textarea {
+        grid-column: span 2;
+        min-height: 80px;
+    }
+
+    label {
+        font-size: 0.8rem;
+    }
+
+    /* SINGLE PLAYER PAGE */
+    .singlePlayer {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .singlePlayer img {
+        width: 300px;
+        border-radius: 15px;
+        margin-bottom: 15px;
+    }
+
+    .stats p {
+        margin: 5px 0;
+    }
+
+    .backBtn {
+        display: inline-block;
+        margin-top: 15px;
+        text-decoration: none;
+        color: #38bdf8;
+    }
+
+    /* UPGRADE PAGE */
+    h1, h2 {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    hr {
+        margin: 10px 0;
+        border: 1px solid #1e293b;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+        .playerContent {
+            flex-direction: column;
+        }
+
+        .overallBox {
+            margin-top: 10px;
+        }
+    }
