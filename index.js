@@ -4,8 +4,19 @@
 // --------------------------------------------------------------------
 const express = require("express");
 require("pug");
+const fs = require("fs").promises;
+const bcrypt = require("bcryptjs");
+const session = require("express-session");
 
 const app = express();
+app.use(session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
+
+
 app.listen(3000, () => {console.log("Server running on http://localhost:3000");});
 app.set("view engine", "pug")
 
@@ -50,20 +61,20 @@ const {getData, saveData} = require("./db");
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("/main", (req, res) => {
     res.render("template");
 });
 
-app.get("/index/:id", (req, res) => {
-    const players = getData("db.json");
+app.get("/index/:id", async (req, res) => {
+    const players = await getData("db.json");
 
     const player = players[req.params.id];
 
     res.render("player", { player });
 });
 
-app.get("/players", (req, res) => {
-    let players = getData("db.json");
+app.get("/players", async (req, res) => {
+    let players = await getData("db.json");
 
     // apply team filter if provided
     const team = req.query.team;
@@ -74,12 +85,12 @@ app.get("/players", (req, res) => {
     res.render("index", { players, teams, team });
 });
 
-app.get("/myPlayer", (req, res) => {
-    const players = getData('myPlayer.json');
+app.get("/myPlayer", async (req, res) => {
+    const players = await getData('myPlayer.json');
     res.render("myPlayer", { players, teams });
 });
 
-app.post("/myPlayer/create", (req, res) => {
+app.post("/myPlayer/create", async (req, res) => {
 
     const clampStat = (value) => {
         const n = Number(value);
@@ -87,7 +98,7 @@ app.post("/myPlayer/create", (req, res) => {
         return Math.min(99, Math.max(25, n));
     };
 
-    const players = getData("myPlayer.json");
+    const players = await getData("myPlayer.json");
     const newplayer = {
         id: Date.now(),
         team: req.body.team,
@@ -106,23 +117,23 @@ app.post("/myPlayer/create", (req, res) => {
     };
 
     players.push(newplayer);
-    saveData(players, "myPlayer.json");
+    await saveData(players, "myPlayer.json");
     res.redirect("/myPlayer");
 });
 
-app.post("/myPlayer/delete/:id", (req, res) => {
+app.post("/myPlayer/delete/:id", async (req, res) => {
     
     const id = req.params.id;
-    myPlayers = getData("myPlayer.json");
+    let myPlayers = await getData("myPlayer.json");
     myPlayers = myPlayers.filter(p => p.id != id);
-    saveData(myPlayers, "myPlayer.json");
+    await saveData(myPlayers, "myPlayer.json");
     res.redirect("/myPlayer");
 });
 
-app.get("/myPlayer/upgrade/:id", (req, res) => {
+app.get("/myPlayer/upgrade/:id", async (req, res) => {
 
     const id = req.params.id;
-    const myPlayers = getData("myPlayer.json");
+    const myPlayers = await getData("myPlayer.json");
     const myPlayer = myPlayers.find(p => p.id == id);
 
     if (myPlayer.statPoints <= 0) return res.redirect("/myPlayer");
@@ -131,12 +142,11 @@ app.get("/myPlayer/upgrade/:id", (req, res) => {
 
 });
 
-app.post("/myPlayer/upgrade/:id", (req, res) => {
-    
+app.post("/myPlayer/upgrade/:id", async (req, res) => {
     const id = req.params.id;
     const stat = req.body.stat;
 
-    const myPlayers = getData("myPlayer.json");
+    const myPlayers = await getData("myPlayer.json");
     const myPlayer = myPlayers.find(p => p.id == id);
 
     if (!myPlayer) return res.redirect("/myPlayer");
@@ -146,6 +156,42 @@ app.post("/myPlayer/upgrade/:id", (req, res) => {
         myPlayer.statPoints -= 1;
     }
 
-    saveData(myPlayers, "myPlayer.json");
+    await saveData(myPlayers, "myPlayer.json");
     res.redirect("/myPlayer");
 });
+
+app.post("/main/register", async (req, res) => {
+
+    const { email, pin } = req.body
+    const id = "id_" + Date.now()
+    const hashedPin = await bcrypt.hash(pin, 12)
+
+    const users = await getData("users.json")
+    if (users.find(u => u.email == email)) return res.redirect("/main?UserExists")
+
+    users.push({ id, email, pin: hashedPin })
+    await saveData(users, "users.json")
+    res.redirect("/main?UserCreated")
+
+})
+
+app.post("/main/login", async (req, res) => {
+
+    const email = req.body.email
+    const pin = req.body.pin
+
+    const users = await getData("users.json")
+    const user = users.find(u => u.email == email)
+
+    if (!user) return res.redirect("/main?NoUserFound")
+
+    const pinCheck = await bcrypt.compare(pin, user.pin)
+    if (!pinCheck) return res.redirect("/main?WrongPin")
+
+    req.session.loggedIn = true
+    req.session.email = user.email
+    req.session.userId = user.id
+    req.session.admin = user.admin
+
+    res.redirect("/main?LoginSuccess")
+})

@@ -1,17 +1,18 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 
-function saveData(data, filename = 'db.json') {
-    fs.writeFileSync(filename, JSON.stringify(data, null, 3));
+async function saveData(data, filename = 'db.json') {
+    await fs.writeFile(filename, JSON.stringify(data, null, 3));
 }
 
-function getData(filename = 'db.json') {
-    return JSON.parse(fs.readFileSync(filename).toString());
+async function getData(filename = 'db.json') {
+    const data = await fs.readFile(filename, 'utf8');
+    return JSON.parse(data);
 }
 
-
-
-
-
-
+function auth(req, res, next) {
+    if (!req.session.loggedIn) return res.redirect("/myPlayer?YouAreNotLoggedIn")
+    req.uid = req.session.userId
+    next()
+}
 
 module.exports = { getData, saveData };
