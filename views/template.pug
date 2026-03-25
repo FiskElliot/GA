@@ -6,16 +6,18 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
     header
-        block nav
-            nav 
-                a(href="/main") Home
-                a(href="/myPlayer") MyPlayer
-                a(href="/players") Players
+        nav 
+            a(href="/main") Login/Register
+            a(href="/myPlayer") MyPlayer
+            a(href="/players") Players
 
-        block players
-            .headerDiv
-                h1 Hello and Welcome !
-                p This is a sample Pug template.
+            if loggedIn
+                .loginStatus 
+                    p You are logged in as #{email}
+                    a(href="/logout") Log Out 
+            else
+                .loginStatus 
+                    p You are not logged in
 
     main
         block content
@@ -46,3 +48,5 @@ html(lang="en")
         block form
              .footerDiv
                 p &copy; 2024 My Pug Template. All rights reserved. 
+
+    block mPScripts

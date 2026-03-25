@@ -112,7 +112,7 @@
    {
       "id": 106,
       "name": "Jimmy Butler",
-      "team": "Miami Heat",
+      "team": "Golden State Warriors",
       "ppg": 22.9,
       "rpg": 5.9,
       "apg": 5.3,
@@ -312,7 +312,7 @@
    {
       "id": 205,
       "name": "Andrew Wiggins",
-      "team": "Golden State Warriors",
+      "team": "Miami Heat",
       "ppg": 18.1,
       "rpg": 4.9,
       "apg": 2.4,
@@ -752,7 +752,7 @@
    {
       "id": 319,
       "name": "Kevin Love",
-      "team": "Miami Heat",
+      "team": "Utah Jazz",
       "ppg": 8.5,
       "rpg": 6.4,
       "apg": 1.9,
@@ -862,7 +862,7 @@
    {
       "id": 330,
       "name": "Seth Curry",
-      "team": "Brooklyn Nets",
+      "team": "Golden State Warriors",
       "ppg": 13.2,
       "rpg": 2.1,
       "apg": 2.8,
@@ -1068,5 +1068,25 @@
       "apg": 0.9,
       "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629655.png",
       "description": "Rim-running shot blocker."
+   },
+   {
+   "id": 351,
+   "name": "Pelle Larsson",
+   "team": "Miami Heat",
+   "ppg": 22.4,
+   "rpg": 6.7,
+   "apg": 4.3,
+   "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641796.png",
+   "description": "Versatile forward with great court vision and solid defense."
+   },
+   {
+   "id": 352,
+   "name": "LaMelo Ball",
+   "team": "Charlotte Hornets",
+   "ppg": 19.2,
+   "rpg": 4.8,
+   "apg": 7.2,
+   "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630163.png",
+   "description": "Athletic point guard with elite playmaking and scoring ability." 
    }
 ]

@@ -57,40 +57,62 @@ const teams = rawTeams.map(t =>
     t.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 );
 
-const {getData, saveData} = require("./db");
+const {getData, saveData, auth} = require("./db");
 
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/main", (req, res) => {
-    res.render("template");
+
+    const templateData = {
+        loggedIn: req.session.loggedIn || false,
+        email: req.session.email || null
+    }
+
+    res.render("template", templateData);
 });
 
 app.get("/index/:id", async (req, res) => {
     const players = await getData("db.json");
 
-    const player = players[req.params.id];
+    const player = players.find(p => p.id == req.params.id);
 
     res.render("player", { player });
 });
 
 app.get("/players", async (req, res) => {
     let players = await getData("db.json");
+    const {team, search} = req.query;
 
-    // apply team filter if provided
-    const team = req.query.team;
-    if (team && team.length) {
-        players = players.filter(p => p.team === team);
+    if (team) players = players.filter(p => p.team === team);
+    if (search) {
+        const lowerSearch = search.toLowerCase();
+        players = players.filter(p => p.name.toLowerCase().includes(lowerSearch));
     }
 
-    res.render("index", { players, teams, team });
+    if (req.headers["hx-request"]) {
+        return res.render("partials/playerList", { players });
+    }
+
+    const templateData = { players, teams, team, search, 
+        loggedIn: req.session.loggedIn || false,
+        email: req.session.email || null
+    }
+
+    res.render("index", templateData);
 });
 
 app.get("/myPlayer", async (req, res) => {
     const players = await getData('myPlayer.json');
-    res.render("myPlayer", { players, teams });
+
+    const templateData = { players, teams, 
+        loggedIn: req.session.loggedIn || false,
+        email: req.session.email || null
+    }
+
+    res.render("myPlayer", templateData);
 });
 
-app.post("/myPlayer/create", async (req, res) => {
+app.post("/myPlayer/create", auth, async(req, res) => {
 
     const clampStat = (value) => {
         const n = Number(value);
@@ -121,7 +143,7 @@ app.post("/myPlayer/create", async (req, res) => {
     res.redirect("/myPlayer");
 });
 
-app.post("/myPlayer/delete/:id", async (req, res) => {
+app.post("/myPlayer/delete/:id", auth, async (req, res) => {
     
     const id = req.params.id;
     let myPlayers = await getData("myPlayer.json");
@@ -130,7 +152,7 @@ app.post("/myPlayer/delete/:id", async (req, res) => {
     res.redirect("/myPlayer");
 });
 
-app.get("/myPlayer/upgrade/:id", async (req, res) => {
+app.get("/myPlayer/upgrade/:id", auth, async (req, res) => {
 
     const id = req.params.id;
     const myPlayers = await getData("myPlayer.json");
@@ -142,7 +164,7 @@ app.get("/myPlayer/upgrade/:id", async (req, res) => {
 
 });
 
-app.post("/myPlayer/upgrade/:id", async (req, res) => {
+app.post("/myPlayer/upgrade/:id", auth, async (req, res) => {
     const id = req.params.id;
     const stat = req.body.stat;
 
@@ -195,3 +217,9 @@ app.post("/main/login", async (req, res) => {
 
     res.redirect("/main?LoginSuccess")
 })
+
+app.get("/logout", (req, res) => {
+    req.session.destroy(() => {
+        res.redirect("/main");
+    });
+});

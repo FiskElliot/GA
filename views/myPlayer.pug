@@ -44,7 +44,6 @@ block form
                     option(value="") Select Team
                     each t in teams
                         option(value=t selected=(team==t))= t
-
             .field
                 label Layup
                 input(type="number", name="lay", min="25", max="99", required)
@@ -81,9 +80,27 @@ block form
                 label Speed
                 input(type="number", name="spd", min="25", max="99", required)
 
+            .field
+                button(type="button" id="random") Randomize Stats
+
             .field.desc
                 label Description
                 textarea(name="description", required)
 
             button(type="submit") Create Player
 
+block mPScripts
+    script.
+        const random = document.getElementById('random');
+
+        random.addEventListener('click', () => {
+            // Lista på alla stat-inputs
+            const stats = ['lay', 'mR', 'tP', 'dunk', 'def', 'reb', 'hand', 'pass', 'spd'];
+            
+            stats.forEach(stat => {
+                // Slumpa ett värde mellan 25 och 99
+                const randomValue = Math.floor(Math.random() * (99 - 25 + 1)) + 25;
+                const input = document.querySelector(`input[name="${stat}"]`);
+                if (input) input.value = randomValue;
+            });
+        });

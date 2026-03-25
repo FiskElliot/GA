@@ -15,4 +15,4 @@ function auth(req, res, next) {
     next()
 }
 
-module.exports = { getData, saveData };
+module.exports = {getData, saveData, auth};

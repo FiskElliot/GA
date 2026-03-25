@@ -1,0 +1,11 @@
+
+.players
+    if players && players.length
+        each p, index in players
+            a(href="/index/" + index)
+                .player(id='id_' + p.id)
+                    img(src=p.image, alt="")
+                    h3= p.name
+                    p= p.description
+    else
+        p No players found.
