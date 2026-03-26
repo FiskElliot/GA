@@ -101,7 +101,7 @@ app.get("/players", async (req, res) => {
     res.render("index", templateData);
 });
 
-app.get("/myPlayer", async (req, res) => {
+app.get("/myPlayer", auth, async (req, res) => {
     const players = await getData('myPlayer.json');
 
     let filteredPlayers = [];

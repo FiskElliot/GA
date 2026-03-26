@@ -426,5 +426,41 @@
       "spd": 97,
       "description": "ba",
       "overall": 75
+   },
+   {
+      "id": 1774530435785,
+      "userId": "id_1774352042083",
+      "team": "Utah Jazz",
+      "name": "ninja",
+      "statPoints": 9,
+      "lay": 75,
+      "mR": 93,
+      "tP": 90,
+      "dunk": 77,
+      "def": 50,
+      "reb": 80,
+      "hand": 72,
+      "pass": 63,
+      "spd": 94,
+      "description": "Tuff",
+      "overall": 77
+   },
+   {
+      "id": 1774530535944,
+      "userId": "id_1774352042083",
+      "team": "Minnesota Timberwolves",
+      "name": "apa",
+      "statPoints": 10,
+      "lay": 95,
+      "mR": 62,
+      "tP": 90,
+      "dunk": 94,
+      "def": 99,
+      "reb": 95,
+      "hand": 69,
+      "pass": 58,
+      "spd": 63,
+      "description": "67",
+      "overall": 81
    }
 ]
