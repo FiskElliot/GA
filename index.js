@@ -104,7 +104,14 @@ app.get("/players", async (req, res) => {
 app.get("/myPlayer", async (req, res) => {
     const players = await getData('myPlayer.json');
 
-    const templateData = { players, teams, 
+    let filteredPlayers = [];
+
+    if (req.session.loggedIn) {
+        filteredPlayers = players.filter(p => p.userId === req.session.userId);
+    }
+    
+    const templateData = { teams,
+        players: filteredPlayers, 
         loggedIn: req.session.loggedIn || false,
         email: req.session.email || null
     }
@@ -121,8 +128,9 @@ app.post("/myPlayer/create", auth, async(req, res) => {
     };
 
     const players = await getData("myPlayer.json");
-    const newplayer = {
+    const newPlayer = {
         id: Date.now(),
+        userId: req.session.userId,
         team: req.body.team,
         name: req.body.name,
         statPoints: 10,
@@ -137,17 +145,34 @@ app.post("/myPlayer/create", auth, async(req, res) => {
         spd: clampStat(req.body.spd),
         description: req.body.description
     };
+    const stats = [
+        newPlayer.lay,
+        newPlayer.mR,
+        newPlayer.tP,
+        newPlayer.dunk,
+        newPlayer.def,
+        newPlayer.reb,
+        newPlayer.hand,
+        newPlayer.pass,
+        newPlayer.spd
+    ];
 
-    players.push(newplayer);
+    newPlayer.overall = Math.round(
+        stats.reduce((a,b) => a + b, 0) / stats.length
+    );
+
+    players.push(newPlayer);
     await saveData(players, "myPlayer.json");
     res.redirect("/myPlayer");
 });
 
 app.post("/myPlayer/delete/:id", auth, async (req, res) => {
-    
     const id = req.params.id;
+    const userId = req.session.userId;
     let myPlayers = await getData("myPlayer.json");
-    myPlayers = myPlayers.filter(p => p.id != id);
+    
+    myPlayers = myPlayers.filter(p => !(p.id == id && p.userId === userId));
+    
     await saveData(myPlayers, "myPlayer.json");
     res.redirect("/myPlayer");
 });
@@ -177,9 +202,87 @@ app.post("/myPlayer/upgrade/:id", auth, async (req, res) => {
         myPlayer[stat] += 1;
         myPlayer.statPoints -= 1;
     }
+    const stats = [
+        myPlayer.lay,
+        myPlayer.mR,
+        myPlayer.tP,
+        myPlayer.dunk,
+        myPlayer.def,
+        myPlayer.reb,
+        myPlayer.hand,
+        myPlayer.pass,
+        myPlayer.spd
+    ];
+
+    myPlayer.overall = Math.round(
+        stats.reduce((a, b) => a + b, 0) / stats.length
+    );
+
 
     await saveData(myPlayers, "myPlayer.json");
     res.redirect("/myPlayer");
+});
+
+app.get("/myTeam", auth, async (req, res) => {
+
+    const userId = req.session.userId;
+
+    const allPlayers = await getData("myPlayer.json");
+    const teams = await getData("myTeam.json");
+
+    const myPlayers = allPlayers.filter(p => p.userId === userId);
+    const myTeam = teams.find(t => t.userId === userId) || { players: [] };
+
+    const teamPlayers = myPlayers.filter(p => 
+        myTeam.players.includes(Number(p.id)) || myTeam.players.includes(String(p.id))
+    );
+
+    const templateData = { myPlayers, teamPlayers,
+        loggedIn: req.session.loggedIn || false,
+        email: req.session.email || null
+    }
+
+    res.render("myTeam", templateData);
+});
+
+app.post("/myTeam/add/:playerId", auth, async (req, res) => {
+    const userId = req.session.userId;
+    const playerId = Number(req.params.playerId);
+
+    const allTeams = await getData("myTeam.json");
+    let myTeam = allTeams.find(t => t.userId === userId);
+
+    if (!myTeam) {
+        // Create a new team if none exists
+        myTeam = { userId, players: [] };
+        allTeams.push(myTeam);
+    }
+
+    if (myTeam.players.length >= 5) {
+        return res.redirect("/myTeam?error=Max5Players");
+    }
+
+    if (!myTeam.players.includes(playerId)) {
+        myTeam.players.push(playerId);
+    }
+
+    await saveData(allTeams, "myTeam.json");
+    res.redirect("/myTeam");
+});
+
+app.post("/myTeam/remove/:playerId", auth, async (req, res) => {
+    const userId = req.session.userId;
+    const playerId = Number(req.params.playerId);
+
+    const allTeams = await getData("myTeam.json");
+    const myTeam = allTeams.find(t => t.userId === userId);
+
+    if (myTeam) {
+        myTeam.players = myTeam.players.filter(id => Number(id) !== playerId);
+        await saveData(allTeams, "myTeam.json");
+    }
+
+    res.redirect("/myTeam");
 });
 
 app.post("/main/register", async (req, res) => {

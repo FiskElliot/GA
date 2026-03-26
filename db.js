@@ -10,7 +10,7 @@ async function getData(filename = 'db.json') {
 }
 
 function auth(req, res, next) {
-    if (!req.session.loggedIn) return res.redirect("/myPlayer?YouAreNotLoggedIn")
+    if (!req.session.loggedIn) return res.redirect("/main?YouAreNotLoggedIn")
     req.uid = req.session.userId
     next()
 }
