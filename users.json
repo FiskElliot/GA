@@ -8,5 +8,15 @@
       "id": "id_1774352479474",
       "email": "a@b",
       "pin": "$2b$12$YZkDKcoFGbKAU.MAbp3FWOV2Gv2WpNJ.dkEKCXNB6feCcICeo1WTS"
+   },
+   {
+      "id": "id_1774951458170",
+      "email": "nbasigma@cockroach.com",
+      "pin": "$2b$12$9ny7pVJr1Zxc8w/ukylmgeZegeOT/8LlPw7OiU0R6yUXYrxEZWcam"
+   },
+   {
+      "id": "id_1774952008886",
+      "email": "alva@alva",
+      "pin": "$2b$12$eMmnbAkrgkJlcK3NqaYxhu8.5l3zGNplB21GgJV3dRZC.u33DmDny"
    }
 ]

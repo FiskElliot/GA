@@ -235,9 +235,17 @@ app.get("/myTeam", auth, async (req, res) => {
 
     const teamPlayers = myPlayers.filter(p => 
         myTeam.players.includes(Number(p.id)) || myTeam.players.includes(String(p.id))
-    );
+    )
 
-    const templateData = { myPlayers, teamPlayers,
+    let teamOverall = 0;
+
+    if (teamPlayers.length > 0) {
+        teamOverall = Math.round(
+            teamPlayers.reduce((sum, p) => sum + p.overall, 0) / teamPlayers.length
+        )
+    }
+
+    const templateData = { myPlayers, teamPlayers, teamOverall,
         loggedIn: req.session.loggedIn || false,
         email: req.session.email || null
     }

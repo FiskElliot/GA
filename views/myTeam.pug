@@ -8,6 +8,8 @@ block content
         h2 Your Team
 
         if teamPlayers && teamPlayers.length
+            .teamOverall
+                h3 Team Overall: #{teamOverall}
             .players
                 each p in teamPlayers
                     .player
