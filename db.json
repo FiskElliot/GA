@@ -1,13 +1,13 @@
 [
    {
       "id": 1,
-      "name": "LeBum James",
+      "name": "LeBron James",
       "team": "Los Angeles Lakers",
       "ppg": 27.1,
       "rpg": 7.5,
       "apg": 7.4,
       "image": "https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png",
-      "description": "All-time great forward for the Lakers. // Absolute bum"
+      "description": "All-time great forward for the Lakers."
    },
    {
       "id": 2,
