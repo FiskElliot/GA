@@ -1,44 +1,4 @@
 extends template.pug
 
 block content
-    .mainDiv
-
-        h1 My Team 🏀
-
-        h2 Your Team
-
-        if teamPlayers && teamPlayers.length
-            .teamOverall
-                h3 Team Overall: #{teamOverall}
-            .players
-                each p in teamPlayers
-                    .player
-                        h3= p.name
-                        p= p.team
-                        p Overall: #{p.overall}
-
-                        form(action="/myTeam/remove/" + p.id, method="post")
-                            button(type="submit") Remove from team
-        else
-            p You have no players in your team.
-
-        hr
-
-        h2 Your Players
-
-        if myPlayers && myPlayers.length
-            .players
-                each p in myPlayers
-
-                    // ❗ Hide if already in team
-                    if !teamPlayers.some(tp => tp.id === p.id)
-
-                        .player
-                            h3= p.name
-                            p= p.team
-                            p Overall: #{p.overall}
-
-                            form(action="/myTeam/add/" + p.id, method="post")
-                                button(type="submit") Add to team
-        else
-            p You have no created players.
+    include partial/myTeamContent.pug

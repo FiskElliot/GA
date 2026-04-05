@@ -5,49 +5,74 @@ html(lang="en")
         include style.pug 
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
+        script(src="https://unpkg.com/htmx.org@1.9.10")
+        script(src="https://unpkg.com/hyperscript.org@0.9.12")
     header
         nav 
-            a(href="/main") Login/Register
-            a(href="/myPlayer") MyPlayer
-            a(href="/myTeam") MyTeam 
+            if !loggedIn
+                a(href="/main") Login/Register
+            else
+                a(href="/main") Home
             a(href="/players") Players
 
             if loggedIn
-                .loginStatus 
-                    p You are logged in as #{email}
-                    a(href="/logout") Log Out 
-            else
-                .loginStatus 
-                    p You are not logged in
+                a(href="/myPlayer") MyPlayer
+                a(href="/myTeam") MyTeam
+            
+            div#loginStatus
+                include partial/loginStatus
 
     main
         block content
             .mainDiv 
-                h2 Register user
-                form(action="/main/register" method="POST")
-                    label(for="email") Email:
-                    input(type="email" name="email" required)
-
-                    label(for="pin") PIN:
-                    input(type="password" name="pin" required)
-
-                    button(type="submit") Register
-
-                hr
-
-                h2 Logga in
-                form(action="/main/login" method="POST")
-                    label(for="email") Email:
-                    input(type="email" name="email" required)
-
-                    label(for="pin") PIN:
-                    input(type="password" name="pin" required)
-
-                    button(type="submit") Logga in
+                if !loggedIn
+                    .auth-forms
+                        div#registerSection
+                            include partial/registerForm
+                        
+                        hr
+                        
+                        div#loginSection
+                            include partial/loginForm
+                else
+                    h2 Welcome back, #{email}
+                    p You are already logged in. Use the menu to manage your players and team.
 
     footer
         block form
              .footerDiv
-                p End of Page
 
     block mPScripts
+        script.
+            const random = document.getElementById('random');
+            if (random){
+                random.addEventListener('click', () => {
+                    const stats = ['lay', 'mR', 'tP', 'dunk', 'def', 'reb', 'hand', 'pass', 'spd'];
+
+                    stats.forEach(stat => {
+                        let randValue;
+
+                        const roll = Math.random();
+
+                        if (roll < 0.3) {
+                            // Låg stat
+                            randValue = Math.floor(Math.random() * (40 - 25 + 1)) + 25;
+                        } else if (roll > 0.7) {
+                            // Hög stat
+                            randValue = Math.floor(Math.random() * (99 - 90 + 1)) + 90;
+                        } else {
+                            // Normal stat
+                            randValue = Math.floor(Math.random() * (80 - 50 + 1)) + 50;
+                        }
+
+                        const input = document.querySelector(`input[name="${stat}"]`);
+                        if (input) input.value = randValue;
+                    });
+
+                    // Uppdatera overall direkt
+                    const allValues = stats.map(stat => Number(document.querySelector(`input[name="${stat}"]`).value));
+                    const overall = Math.round(allValues.reduce((a,b) => a+b, 0) / stats.length);
+                    const overallElem = document.getElementById('overallDisplay');
+                    if(overallElem) overallElem.textContent = overall;
+                });
+            }

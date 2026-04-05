@@ -1,0 +1,23 @@
+.player(id='id_' + p.id)
+    .playerContent
+        .playerInfo
+            h2= p.name
+            h3= p.team
+            p= p.description
+            p Stat Points: #{p.statPoints}
+
+            p Layup: #{p.lay} | Mid-Range: #{p.mR} | 3PT: #{p.tP} | Dunk: #{p.dunk} | Defence: #{p.def}
+            p Rebound: #{p.reb} | Handles: #{p.hand} | Passing: #{p.pass} | Speed: #{p.spd}
+
+            a(href="/myPlayer/upgrade/" + p.id, hx-get="/myPlayer/upgrade/" + p.id, hx-target="body", hx-swap="beforeend") Upgrade Player
+            button(
+                hx-post="/myPlayer/delete/" + p.id
+                hx-target="closest .player"
+                hx-swap="outerHTML"
+                hx-confirm="Delete this player permanently?"
+                type="button"
+            ) Delete Player
+
+        .overallBox
+            p Overall
+            h1= p.overall

@@ -119,6 +119,10 @@ app.get("/myPlayer", auth, async (req, res) => {
     res.render("myPlayer", templateData);
 });
 
+app.get("/myPlayer/form", auth, (req, res) => {
+    res.render("partial/playerForm", { teams });
+});
+
 app.post("/myPlayer/create", auth, async(req, res) => {
 
     const clampStat = (value) => {
@@ -163,6 +167,11 @@ app.post("/myPlayer/create", auth, async(req, res) => {
 
     players.push(newPlayer);
     await saveData(players, "myPlayer.json");
+    
+    if (req.headers["hx-request"]) {
+        return res.render("partial/playerCard", { p: newPlayer });
+    }
+    
     res.redirect("/myPlayer");
 });
 
@@ -174,6 +183,11 @@ app.post("/myPlayer/delete/:id", auth, async (req, res) => {
     myPlayers = myPlayers.filter(p => !(p.id == id && p.userId === userId));
     
     await saveData(myPlayers, "myPlayer.json");
+    
+    if (req.headers["hx-request"]) {
+        return res.status(200).send("");
+    }
+    
     res.redirect("/myPlayer");
 });
 
@@ -183,7 +197,17 @@ app.get("/myPlayer/upgrade/:id", auth, async (req, res) => {
     const myPlayers = await getData("myPlayer.json");
     const myPlayer = myPlayers.find(p => p.id == id);
 
-    if (myPlayer.statPoints <= 0) return res.redirect("/myPlayer");
+    if (!myPlayer) return res.status(404).send("Not found");
+    if (myPlayer.statPoints <= 0) {
+        if (req.headers["hx-request"]) {
+            return res.render("partial/upgradeModal", { myPlayer, message: "No stat points" });
+        }
+        return res.redirect("/myPlayer");
+    }
+    
+    if (req.headers["hx-request"]) {
+        return res.render("partial/upgradeModal", { myPlayer });
+    }
     
     res.render("upgrade", { myPlayer });
 
@@ -197,6 +221,13 @@ app.post("/myPlayer/upgrade/:id", auth, async (req, res) => {
     const myPlayer = myPlayers.find(p => p.id == id);
 
     if (!myPlayer) return res.redirect("/myPlayer");
+
+    if (stat === "cancel") {
+        if (req.headers["hx-request"]) {
+            return res.status(200).send("");
+        }
+        return res.redirect("/myPlayer");
+    }
 
     if (myPlayer[stat] < 99) {
         myPlayer[stat] += 1;
@@ -220,6 +251,11 @@ app.post("/myPlayer/upgrade/:id", auth, async (req, res) => {
 
 
     await saveData(myPlayers, "myPlayer.json");
+    
+    if (req.headers["hx-request"]) {
+        return res.render("partial/upgradeModal", { myPlayer });
+    }
+    
     res.redirect("/myPlayer");
 });
 
@@ -267,6 +303,9 @@ app.post("/myTeam/add/:playerId", auth, async (req, res) => {
     }
 
     if (myTeam.players.length >= 5) {
+        if (req.headers["hx-request"]) {
+            return res.status(400).send("Team is full (max 5 players)");
+        }
         return res.redirect("/myTeam?error=Max5Players");
     }
 
@@ -275,6 +314,29 @@ app.post("/myTeam/add/:playerId", auth, async (req, res) => {
     }
 
     await saveData(allTeams, "myTeam.json");
+    
+    if (req.headers["hx-request"]) {
+        const allPlayers = await getData("myPlayer.json");
+        const myPlayers = allPlayers.filter(p => p.userId === userId);
+        const teamPlayers = myPlayers.filter(p => 
+            myTeam.players.includes(Number(p.id))
+        );
+        
+        let teamOverall = 0;
+        if (teamPlayers.length > 0) {
+            teamOverall = Math.round(
+                teamPlayers.reduce((sum, p) => sum + p.overall, 0) / teamPlayers.length
+            );
+        }
+        
+        const templateData = { myPlayers, teamPlayers, teamOverall,
+            loggedIn: req.session.loggedIn || false,
+            email: req.session.email || null
+        }
+        
+        return res.render("partial/myTeamContent", templateData);
+    }
+    
     res.redirect("/myTeam");
 });
 
@@ -290,7 +352,37 @@ app.post("/myTeam/remove/:playerId", auth, async (req, res) => {
         await saveData(allTeams, "myTeam.json");
     }
 
+    if (req.headers["hx-request"]) {
+        const allPlayers = await getData("myPlayer.json");
+        const myPlayers = allPlayers.filter(p => p.userId === userId);
+        const teamPlayers = myPlayers.filter(p => 
+            myTeam && myTeam.players.includes(Number(p.id))
+        );
+        
+        let teamOverall = 0;
+        if (teamPlayers.length > 0) {
+            teamOverall = Math.round(
+                teamPlayers.reduce((sum, p) => sum + p.overall, 0) / teamPlayers.length
+            );
+        }
+        
+        const templateData = { myPlayers, teamPlayers, teamOverall,
+            loggedIn: req.session.loggedIn || false,
+            email: req.session.email || null
+        }
+        
+        return res.render("partial/myTeamContent", templateData);
+    }
+    
     res.redirect("/myTeam");
+});
+
+app.get("/main/register-form", (req, res) => {
+    res.render("partial/registerForm");
+});
+
+app.get("/main/login-form", (req, res) => {
+    res.render("partial/loginForm");
 });
 
 app.post("/main/register", async (req, res) => {
@@ -300,10 +392,22 @@ app.post("/main/register", async (req, res) => {
     const hashedPin = await bcrypt.hash(pin, 12)
 
     const users = await getData("users.json")
-    if (users.find(u => u.email == email)) return res.redirect("/main?UserExists")
+    if (users.find(u => u.email == email)) {
+        if (req.headers["hx-request"]) {
+            return res.status(400).render("partial/registerForm", { 
+                error: "User already exists" 
+            });
+        }
+        return res.redirect("/main?UserExists");
+    }
 
     users.push({ id, email, pin: hashedPin })
     await saveData(users, "users.json")
+    
+    if (req.headers["hx-request"]) {
+        return res.render("partial/registerForm", { success: "User created! Please login." });
+    }
+    
     res.redirect("/main?UserCreated")
 
 })
@@ -316,21 +420,43 @@ app.post("/main/login", async (req, res) => {
     const users = await getData("users.json")
     const user = users.find(u => u.email == email)
 
-    if (!user) return res.redirect("/main?NoUserFound")
+    if (!user) {
+        if (req.headers["hx-request"]) {
+            return res.status(401).render("partial/loginForm", { 
+                error: "User not found" 
+            });
+        }
+        return res.redirect("/main?NoUserFound");
+    }
 
     const pinCheck = await bcrypt.compare(pin, user.pin)
-    if (!pinCheck) return res.redirect("/main?WrongPin")
+    if (!pinCheck) {
+        if (req.headers["hx-request"]) {
+            return res.status(401).render("partial/loginForm", { 
+                error: "Wrong PIN" 
+            });
+        }
+        return res.redirect("/main?WrongPin");
+    }
 
     req.session.loggedIn = true
     req.session.email = user.email
     req.session.userId = user.id
     req.session.admin = user.admin
 
+    if (req.headers["hx-request"]) {
+        res.set("HX-Redirect", "/main");
+        return res.status(200).send();
+    }
+    
     res.redirect("/main?LoginSuccess")
 })
 
 app.get("/logout", (req, res) => {
     req.session.destroy(() => {
+        if (req.headers["hx-request"]) {
+            return res.render("partial/loginStatus", { loggedIn: false });
+        }
         res.redirect("/main");
     });
 });

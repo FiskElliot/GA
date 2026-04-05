@@ -1,0 +1,21 @@
+div#teamSection
+    if teamPlayers && teamPlayers.length
+        div#teamOverall
+            h3 Team Overall: #{teamOverall}
+
+        div.players#teamPlayers
+            each p in teamPlayers
+                .player(id='team-' + p.id)
+                    h3= p.name
+                    p= p.team
+                    p Overall: #{p.overall}
+
+                    button(
+                        hx-post="/myTeam/remove/" + p.id
+                        hx-target=".mainDiv"
+                        hx-swap="outerHTML"
+                        hx-confirm="Remove from team?"
+                        type="button"
+                    ) Remove
+    else
+        p You have no players in your team.

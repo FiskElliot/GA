@@ -53,6 +53,7 @@ style.
         max-width: 1200px;
         margin: 2rem auto;
         padding: 0 2rem;
+        min-height: 60vh;
     }
 
     .mainDiv {
@@ -61,6 +62,10 @@ style.
         padding: 2rem;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         margin-bottom: 2rem;
+    }
+
+    .mainDiv h1{
+        color: #2a5298;
     }
 
     /* Forms */
@@ -100,7 +105,7 @@ style.
     /* Players List */
     .players {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 1.5rem;
         margin-top: 2rem;
     }
@@ -205,6 +210,7 @@ style.
         text-align: center;
         padding: 2rem 0;
         margin-top: 4rem;
+        min-height: 30vh
     }
 
     .footerDiv {
@@ -249,6 +255,106 @@ style.
         to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Modal Styles */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .modal-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .modal {
+        background: #1e3c72;
+        color: white;
+        border-radius: 10px;
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.show .modal {
+        transform: scale(1);
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: white;
+    }
+
+    .close-btn:hover {
+        color: #333;
+    }
+
+    /* Auth Forms */
+    .auth-forms {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .form-container {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        flex: 1;
+        max-width: 400px;
+    }
+
+    .error {
+        color: #e74c3c;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+
+    .success {
+        color: #27ae60;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .create-form {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin: 2rem 0;
+    }
+
+    .create-form h3 {
+        color: #2a5298;
+        margin-bottom: 1rem;
+    }
+
     .player, .mainDiv {
         animation: fadeIn 0.5s ease-out;
     }
@@ -266,7 +372,7 @@ style.
     }
 
     h1 {
-        color: #2a5298;
+        color: #ffffff;
         text-align: center;
     }
 
@@ -279,10 +385,86 @@ style.
         font-weight: bold;
     }
 
-    .player button {
+    .player button,
+    .player a {
         width: auto;
         display: inline-block;
         margin-right: 1rem;
         margin-bottom: 0.5rem;
+        padding: 0.65rem 0.95rem;
+        font-size: 0.95rem;
+        line-height: 1.3;
+        border-radius: 8px;
+        background: #2a5298;
+        color: white;
+        text-decoration: none;
+        transition: background 0.25s ease;
+    }
+
+    .player button:hover,
+    .player a:hover {
+        background: #1e3c72;
+    }
+
+    .modal h2,
+    .modal p,
+    .modal span {
+        color: #ffffff;
+    }
+
+    .modal button[type="submit"] {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        margin-top: 0.75rem;
+        background: #2a5298;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .modal button[type="submit"]:hover {
+        background: #1e3c72;
+    }
+
+    .singlePlayer {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        padding: 2rem;
+        margin: 2rem auto;
+        max-width: 900px;
+    }
+
+    .singlePlayer img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+    }
+
+    .singlePlayer .stats {
+        color: #333;
+    }
+
+    .singlePlayer .stats p {
+        color: #444;
+        margin-bottom: 0.75rem;
+    }
+
+    .backBtn {
+        display: inline-block;
+        padding: 0.75rem 1.25rem;
+        background: #2a5298;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background 0.25s ease;
+        margin-top: 1rem;
+    }
+
+    .backBtn:hover {
+        background: #1e3c72;
     }
     

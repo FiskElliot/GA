@@ -1,0 +1,25 @@
+div.modal-overlay.show#upgradeModal(
+    hx-on:click="if(event.target === this) this.classList.remove('show')"
+)
+    .modal
+        h2 Upgrade #{myPlayer.name}
+        p Stat Points:
+            span#statPoints= myPlayer.statPoints
+
+        if message
+            p.error= message
+
+        form(hx-post="/myPlayer/upgrade/" + myPlayer.id, hx-target="#upgradeModal", hx-swap="outerHTML")
+            - const stats = ['lay', 'mR', 'tP', 'dunk', 'def', 'reb', 'hand', 'pass', 'spd']
+            - const statLabels = ['Layup', 'Mid Range', '3PT', 'Dunk', 'Defence', 'Rebound', 'Handles', 'Passing', 'Speed']
+
+            each stat, index in stats
+                - const currentValue = myPlayer[stat]
+                button(
+                    type="submit"
+                    name="stat"
+                    value=stat
+                    disabled=(currentValue >= 99 || myPlayer.statPoints <= 0)
+                )= `Upgrade ${statLabels[index]} (${currentValue})`
+
+            button(type="button", hx-get="/myPlayer", hx-target="body", hx-swap="outerHTML") Done

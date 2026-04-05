@@ -1,0 +1,19 @@
+div#playersSection
+    if myPlayers && myPlayers.length
+        .players
+            each p in myPlayers
+                if !teamPlayers.some(tp => tp.id === p.id)
+                    .player(id='avail-' + p.id)
+                        h3= p.name
+                        p= p.team
+                        p Overall: #{p.overall}
+
+                        button(
+                            hx-post="/myTeam/add/" + p.id
+                            hx-target=".mainDiv"
+                            hx-swap="outerHTML"
+                            hx-confirm="Add to team?"
+                            type="button"
+                        ) Add to Team
+    else
+        p You have no created players.

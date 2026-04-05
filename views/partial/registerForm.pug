@@ -1,0 +1,14 @@
+.form-container
+    h2 Register user
+    if error
+        p.error= error
+    if success
+        p.success= success
+    form(action="/main/register" method="POST" hx-post="/main/register" hx-target="this" hx-swap="outerHTML")
+        label(for="email") Email:
+        input(type="email" name="email" required)
+
+        label(for="pin") PIN:
+        input(type="password" name="pin" required)
+
+        button(type="submit") Register
