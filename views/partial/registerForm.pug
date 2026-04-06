@@ -4,11 +4,15 @@
         p.error= error
     if success
         p.success= success
-    form(action="/main/register" method="POST" hx-post="/main/register" hx-target="this" hx-swap="outerHTML")
-        label(for="email") Email:
-        input(type="email" name="email" required)
+    form(action="/main/register" method="POST" hx-post="/main/register" hx-target="closest .form-container" hx-swap="outerHTML")
+        
+        label(for="username") Username:
+        input#username(type="username" name="username" required)
 
-        label(for="pin") PIN:
-        input(type="password" name="pin" required)
+        label(for="email") Email:
+        input#email(type="email" name="email" required)
+
+        label(for="password") Password:
+        input#password(type="password" name="password" required)
 
         button(type="submit") Register

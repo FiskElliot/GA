@@ -1,4 +1,4 @@
-div.modal-overlay.show#upgradeModal(
+div.modal-overlay.show#upgradePage(
     hx-on:click="if(event.target === this) this.classList.remove('show')"
 )
     .modal
@@ -9,7 +9,7 @@ div.modal-overlay.show#upgradeModal(
         if message
             p.error= message
 
-        form(hx-post="/myPlayer/upgrade/" + myPlayer.id, hx-target="#upgradeModal", hx-swap="outerHTML")
+        form(hx-post="/myPlayer/upgrade/" + myPlayer.id, hx-target="#upgradePage", hx-swap="outerHTML")
             - const stats = ['lay', 'mR', 'tP', 'dunk', 'def', 'reb', 'hand', 'pass', 'spd']
             - const statLabels = ['Layup', 'Mid Range', '3PT', 'Dunk', 'Defence', 'Rebound', 'Handles', 'Passing', 'Speed']
 

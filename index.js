@@ -2,9 +2,8 @@
 // Installera express: npm i express i terminalen
 // Sätta igång program om filen heter index.js: node --watch index
 // --------------------------------------------------------------------
-const express = require("express");
 require("pug");
-const fs = require("fs").promises;
+const express = require("express");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 
@@ -16,6 +15,12 @@ app.use(session({
     cookie: { secure: false }
 }));
 
+app.use((req, res, next) => {
+    res.locals.loggedIn = req.session.loggedIn || false;
+    res.locals.email = req.session.email || null;
+    res.locals.username = req.session.username || null;
+    next();
+});
 
 app.listen(3000, () => {console.log("Server running on http://localhost:3000");});
 app.set("view engine", "pug")
@@ -52,7 +57,6 @@ const rawTeams = [
     'utah_jazz',
     'washington_wizards'
 ];
-
 const teams = rawTeams.map(t =>
     t.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 );
@@ -200,13 +204,13 @@ app.get("/myPlayer/upgrade/:id", auth, async (req, res) => {
     if (!myPlayer) return res.status(404).send("Not found");
     if (myPlayer.statPoints <= 0) {
         if (req.headers["hx-request"]) {
-            return res.render("partial/upgradeModal", { myPlayer, message: "No stat points" });
+            return res.render("partial/upgradePage", { myPlayer, message: "No stat points" });
         }
         return res.redirect("/myPlayer");
     }
     
     if (req.headers["hx-request"]) {
-        return res.render("partial/upgradeModal", { myPlayer });
+        return res.render("partial/upgradePage", { myPlayer });
     }
     
     res.render("upgrade", { myPlayer });
@@ -222,17 +226,11 @@ app.post("/myPlayer/upgrade/:id", auth, async (req, res) => {
 
     if (!myPlayer) return res.redirect("/myPlayer");
 
-    if (stat === "cancel") {
-        if (req.headers["hx-request"]) {
-            return res.status(200).send("");
-        }
-        return res.redirect("/myPlayer");
-    }
-
     if (myPlayer[stat] < 99) {
         myPlayer[stat] += 1;
         myPlayer.statPoints -= 1;
     }
+    
     const stats = [
         myPlayer.lay,
         myPlayer.mR,
@@ -253,7 +251,7 @@ app.post("/myPlayer/upgrade/:id", auth, async (req, res) => {
     await saveData(myPlayers, "myPlayer.json");
     
     if (req.headers["hx-request"]) {
-        return res.render("partial/upgradeModal", { myPlayer });
+        return res.render("partial/upgradePage", { myPlayer });
     }
     
     res.redirect("/myPlayer");
@@ -387,21 +385,21 @@ app.get("/main/login-form", (req, res) => {
 
 app.post("/main/register", async (req, res) => {
 
-    const { email, pin } = req.body
+    const { username, email, password } = req.body
     const id = "id_" + Date.now()
-    const hashedPin = await bcrypt.hash(pin, 12)
+    const hashedPassword = await bcrypt.hash(password, 12)
 
     const users = await getData("users.json")
     if (users.find(u => u.email == email)) {
         if (req.headers["hx-request"]) {
-            return res.status(400).render("partial/registerForm", { 
+            return res.render("partial/registerForm", { 
                 error: "User already exists" 
             });
         }
         return res.redirect("/main?UserExists");
     }
 
-    users.push({ id, email, pin: hashedPin })
+    users.push({ id, username, email, password: hashedPassword })
     await saveData(users, "users.json")
     
     if (req.headers["hx-request"]) {
@@ -415,32 +413,33 @@ app.post("/main/register", async (req, res) => {
 app.post("/main/login", async (req, res) => {
 
     const email = req.body.email
-    const pin = req.body.pin
+    const password = req.body.password
 
     const users = await getData("users.json")
     const user = users.find(u => u.email == email)
 
     if (!user) {
         if (req.headers["hx-request"]) {
-            return res.status(401).render("partial/loginForm", { 
+            return res.render("partial/loginForm", { 
                 error: "User not found" 
             });
         }
         return res.redirect("/main?NoUserFound");
     }
 
-    const pinCheck = await bcrypt.compare(pin, user.pin)
-    if (!pinCheck) {
+    const passwordCheck = await bcrypt.compare(password, user.password)
+    if (!passwordCheck) {
         if (req.headers["hx-request"]) {
-            return res.status(401).render("partial/loginForm", { 
-                error: "Wrong PIN" 
+            return res.render("partial/loginForm", { 
+                error: "Wrong Password" 
             });
         }
-        return res.redirect("/main?WrongPin");
+        return res.redirect("/main?WrongPassword");
     }
 
     req.session.loggedIn = true
     req.session.email = user.email
+    req.session.username = user.username
     req.session.userId = user.id
     req.session.admin = user.admin
 
