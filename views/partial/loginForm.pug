@@ -5,10 +5,10 @@
         
     form(action="/main/login" method="POST" hx-post="/main/login" hx-target="closest .form-container" hx-swap="outerHTML")
 
-        label(for="email") Email:
-        input#email(type="email" name="email" required)
+        label(for="emailL") Email:
+        input#emailL(type="email" name="email" required)
 
-        label(for="password") Password:
-        input#password(type="password" name="password" required)
+        label(for="passwordL") Password:
+        input#passwordL(type="password" name="password" required)
 
         button(type="submit") Log in

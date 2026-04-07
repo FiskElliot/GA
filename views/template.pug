@@ -40,7 +40,6 @@ html(lang="en")
 
     footer
         block form
-             .footerDiv
 
     block mPScripts
         script.
@@ -54,15 +53,15 @@ html(lang="en")
 
                         const roll = Math.random();
 
-                        if (roll < 0.3) {
-                            // Låg stat
-                            randValue = Math.floor(Math.random() * (40 - 25 + 1)) + 25;
-                        } else if (roll > 0.7) {
-                            // Hög stat
-                            randValue = Math.floor(Math.random() * (99 - 90 + 1)) + 90;
+                        if (roll < 0.2) {
+                            // låg stat
+                            randValue = Math.floor(Math.random() * 40) + 25; // 25–64
+                        } else if (roll > 0.6) {
+                            // hög stat
+                            randValue = Math.floor(Math.random() * 20) + 80; // 80–99
                         } else {
-                            // Normal stat
-                            randValue = Math.floor(Math.random() * (80 - 50 + 1)) + 50;
+                            // normal stat
+                            randValue = Math.floor(Math.random() * 30) + 50; // 50–79
                         }
 
                         const input = document.querySelector(`input[name="${stat}"]`);

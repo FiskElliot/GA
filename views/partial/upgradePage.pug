@@ -1,7 +1,7 @@
-div.modal-overlay.show#upgradePage(
+div.fbgb.show#upgradePage(
     hx-on:click="if(event.target === this) this.classList.remove('show')"
 )
-    .modal
+    .fb
         h2 Upgrade #{myPlayer.name}
         p Stat Points:
             span#statPoints= myPlayer.statPoints

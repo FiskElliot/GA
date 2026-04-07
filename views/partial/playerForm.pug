@@ -5,8 +5,8 @@
         hx-post="/myPlayer/create"
         hx-target="#playersList"
         hx-swap="afterbegin"
-        hx-on:htmx:after-request="if(event.detail.xhr.status === 200) { this.reset(); document.getElementById('overallDisplay').textContent = '0'; document.getElementById('createForm').classList.add('hidden') }"
-    )
+        hx-on:htmx:after-request="if(event.detail.xhr.status === 200) {this.reset(); document.getElementById('overallDisplay').textContent = '0'; document.getElementById('createForm').classList.add('hidden') }"
+)
             .field.name
                 label Player Name
                 input(type="text", name="name", required)
